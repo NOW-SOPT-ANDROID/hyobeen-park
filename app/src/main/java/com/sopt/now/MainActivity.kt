@@ -1,5 +1,6 @@
 package com.sopt.now
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -14,5 +15,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        var id = intent.getStringExtra("id")
+        var nickname = intent.getStringExtra("nickname")
+        var mbti = intent.getStringExtra("mbti")
+
+        binding.tvMainNickname.setText(nickname)
+        binding.tvMainIdcontent.setText(id)
+        binding.tvMainMbticontent.setText(mbti)
     }
 }
