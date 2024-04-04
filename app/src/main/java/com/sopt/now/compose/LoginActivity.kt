@@ -2,6 +2,7 @@ package com.sopt.now.compose
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
@@ -46,7 +47,12 @@ class LoginActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Login()
+                    Login(
+                        signupId = intent.getStringExtra("id"),
+                        signupPw = intent.getStringExtra("pw"),
+                        nickname = intent.getStringExtra("nickname"),
+                        mbti = intent.getStringExtra("mbti")
+                    )
                 }
             }
         }
@@ -54,7 +60,7 @@ class LoginActivity : ComponentActivity() {
 }
 
 @Composable
-fun Login() {
+fun Login(signupId : String?, signupPw : String?, nickname : String?, mbti : String?) {
     val context = LocalContext.current
     var id by remember { mutableStateOf("") }
     var pw by remember { mutableStateOf("") }
@@ -110,7 +116,19 @@ fun Login() {
         )
         Spacer(modifier = Modifier.height(20.dp))
         Button(
-            onClick = { /*TODO*/ },
+            onClick = {
+                if(id == signupId && pw == signupPw) {
+                    Toast.makeText(context, "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(context, MainActivity::class.java)
+                    intent.putExtra("id", id)
+                    intent.putExtra("pw", pw)
+                    intent.putExtra("nickname", nickname)
+                    intent.putExtra("mbti", mbti)
+                    context.startActivity(intent)
+                } else {
+                    Toast.makeText(context, "아이디와 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
+                }
+            },
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xFF209672)
             ),
@@ -136,5 +154,5 @@ fun Login() {
 @Preview (showBackground = true)
 @Composable
 fun LoginPreview() {
-    Login()
+    Login(null, null, null, null)
 }
