@@ -15,9 +15,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var id = intent.getStringExtra("id")
-        var nickname = intent.getStringExtra("nickname")
-        var mbti = intent.getStringExtra("mbti")
+        val id = intent.getStringExtra("id")
+        val nickname = intent.getStringExtra("nickname")
+        val mbti = intent.getStringExtra("mbti")
 
         binding.tvMainNickname.setText(nickname)
         binding.tvMainIdcontent.setText(id)

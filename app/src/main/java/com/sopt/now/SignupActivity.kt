@@ -25,16 +25,16 @@ class SignupActivity : AppCompatActivity() {
         // 회원가입 버튼 클릭이벤트
         binding.btSignupSignup.setOnClickListener {
             // 입력 조건 + 공백 문자만 있지 않은지 확인
-            if(id.isBlank() || id.length < 6 || id.length > 10) {
-                message = "ID는 6자 이상, 10자 이하로 입력해주세요"
-            } else if(pw.isBlank() || pw.length < 8 || pw.length > 12) {
-                message = "비밀번호는 8자 이상, 12자 이하로 입력해주세요"
-            } else if(nickname.isBlank()) {
-                message = "닉네임을 입력해주세요"
-            } else if(mbti.isBlank()) {
-                message = "MBTI를 입력해주세요"
-            } else {
-                message = null
+            when {
+                id.isBlank() || id.length < 6 || id.length > 10 ->
+                    message = "ID는 6자 이상, 10자 이하로 입력해주세요"
+                pw.isBlank() || pw.length < 8 || pw.length > 12 ->
+                    message = "비밀번호는 8자 이상, 12자 이하로 입력해주세요"
+                nickname.isBlank() ->
+                    message = "닉네임을 입력해주세요"
+                mbti.isBlank() ->
+                    message = "MBTI를 입력해주세요"
+                else -> message = null
             }
 
             if(message == null) {
