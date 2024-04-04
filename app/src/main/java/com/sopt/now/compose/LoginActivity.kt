@@ -31,6 +31,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -112,6 +113,7 @@ fun Login(signupId : String?, signupPw : String?, nickname : String?, mbti : Str
             modifier = Modifier
                 .fillMaxWidth(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            visualTransformation = PasswordVisualTransformation(),
             label = {Text("비밀번호를 입력해주세요")}
         )
         Spacer(modifier = Modifier.height(20.dp))
