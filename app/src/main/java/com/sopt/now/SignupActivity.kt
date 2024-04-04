@@ -36,13 +36,14 @@ class SignupActivity : AppCompatActivity() {
                 Toast.makeText(this, "회원가입에 성공했습니다!", Toast.LENGTH_SHORT).show()
 
                 // intent에 정보 담아서 로그인 화면으로 전달
-                val intent = Intent(this, LoginActivity::class.java)
-                intent.putExtra("id", binding.etSignupId.text.toString())
-                intent.putExtra("pw", binding.etSignupPw.text.toString())
-                intent.putExtra("nickname", binding.etSignupNickname.text.toString())
-                intent.putExtra("mbti", binding.etSignupMbti.text.toString())
-                setResult(RESULT_OK, intent)
-                finish()
+                Intent(this, LoginActivity::class.java).apply {
+                    putExtra("id", binding.etSignupId.text.toString())
+                    putExtra("pw", binding.etSignupPw.text.toString())
+                    putExtra("nickname", binding.etSignupNickname.text.toString())
+                    putExtra("mbti", binding.etSignupMbti.text.toString())
+                    setResult(RESULT_OK, this)
+                    finish()
+                }
             } else {
                 // 입력 조건을 충족하지 못한 경우 -> 토스트 메세지
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
