@@ -40,18 +40,15 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.btLoginSignin.setOnClickListener {
-            // 아이디, 비밀번호 입력 여부 확인
-            if(binding.etLoginId.text.isBlank()) {
-                Toast.makeText(this, "아이디를 입력해주세요", Toast.LENGTH_SHORT).show()
-            } else if (binding.etLoginPw.text.isBlank()) {
-                Toast.makeText(this, "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show()
-            } else if (binding.etLoginId.text.toString() == id && binding.etLoginPw.text.toString() == pw) {
+            if (binding.etLoginId.text.toString() == id && binding.etLoginPw.text.toString() == pw) {
                 // 로그인 성공
-                val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("id", id)
-                intent.putExtra("nickname", nickname)
-                intent.putExtra("mbti", mbti)
-                startActivity(intent)
+                Toast.makeText(this, "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()
+                Intent(this, MainActivity::class.java).apply {
+                    putExtra("id", id)
+                    putExtra("nickname", nickname)
+                    putExtra("mbti", mbti)
+                    startActivity(this)
+                }
             } else {
                 // 아이디 또는 비밀번호가 일치하지 않을 때
                 Toast.makeText(this, "아이디와 비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show()
