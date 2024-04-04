@@ -16,16 +16,22 @@ class SignupActivity : AppCompatActivity() {
         // Toast 출력될 문자열
         var message : String?
 
+        // 회원가입 정보 저장
+        val id = binding.etSignupId.text
+        val pw = binding.etSignupPw.text
+        val nickname = binding.etSignupNickname.text
+        val mbti = binding.etSignupMbti.text
+
         // 회원가입 버튼 클릭이벤트
         binding.btSignupSignup.setOnClickListener {
             // 입력 조건 + 공백 문자만 있지 않은지 확인
-            if(binding.etSignupId.text.isBlank() || binding.etSignupId.length() < 6 || binding.etSignupId.length() > 10) {
+            if(id.isBlank() || id.length < 6 || id.length > 10) {
                 message = "ID는 6자 이상, 10자 이하로 입력해주세요"
-            } else if(binding.etSignupPw.text.isBlank() || binding.etSignupPw.length() < 8 || binding.etSignupPw.length() > 12) {
+            } else if(pw.isBlank() || pw.length < 8 || pw.length > 12) {
                 message = "비밀번호는 8자 이상, 12자 이하로 입력해주세요"
-            } else if(binding.etSignupNickname.text.isBlank()) {
+            } else if(nickname.isBlank()) {
                 message = "닉네임을 입력해주세요"
-            } else if(binding.etSignupMbti.text.isBlank()) {
+            } else if(mbti.isBlank()) {
                 message = "MBTI를 입력해주세요"
             } else {
                 message = null
@@ -37,10 +43,10 @@ class SignupActivity : AppCompatActivity() {
 
                 // intent에 정보 담아서 로그인 화면으로 전달
                 Intent(this, LoginActivity::class.java).apply {
-                    putExtra("id", binding.etSignupId.text.toString())
-                    putExtra("pw", binding.etSignupPw.text.toString())
-                    putExtra("nickname", binding.etSignupNickname.text.toString())
-                    putExtra("mbti", binding.etSignupMbti.text.toString())
+                    putExtra("id", id.toString())
+                    putExtra("pw", pw.toString())
+                    putExtra("nickname", nickname.toString())
+                    putExtra("mbti", mbti.toString())
                     setResult(RESULT_OK, this)
                     finish()
                 }
