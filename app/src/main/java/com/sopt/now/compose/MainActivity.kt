@@ -59,7 +59,6 @@ fun Main(id : String = "", pw : String = "", nickname : String = "", mbti : Stri
             .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(70.dp))
         Image(
             painter = painterResource(id = R.drawable.ic_launcher_foreground),
             contentDescription = "Android",
@@ -67,16 +66,18 @@ fun Main(id : String = "", pw : String = "", nickname : String = "", mbti : Stri
                 .width(200.dp)
                 .height(200.dp)
                 .background(color = Color(0xFF209672))
+                .padding(top = 70.dp)
         )
-        Spacer(modifier = Modifier.height(30.dp))
         Text(
             text = nickname,
             fontSize = 30.sp,
-            fontWeight = Bold
+            fontWeight = Bold,
+            modifier = Modifier.padding(top = 30.dp)
         )
-        Spacer(modifier = Modifier.height(40.dp))
         Row (
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 40.dp),
             horizontalArrangement = Arrangement.Start
         ) {
             Text(
@@ -92,9 +93,10 @@ fun Main(id : String = "", pw : String = "", nickname : String = "", mbti : Stri
                 modifier = Modifier.padding(20.dp, 0.dp)
             )
         }
-        Spacer(modifier = Modifier.height(15.dp))
         Row (
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 15.dp),
             horizontalArrangement = Arrangement.Start
         ) {
             Text(

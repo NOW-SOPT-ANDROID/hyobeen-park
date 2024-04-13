@@ -70,53 +70,55 @@ fun Login(signupId : String?, signupPw : String?, nickname : String?, mbti : Str
             .padding(horizontal = 70.dp)
             .fillMaxWidth()
     ) {
-        Spacer(modifier = Modifier.height(70.dp))
         Text(
             text = "Welcome To SOPT",
             fontSize = 30.sp,
             fontWeight = Bold,
             textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 70.dp)
         )
-        Spacer(modifier = Modifier.height(150.dp))
         Text(
             text = "ID",
             fontSize = 20.sp,
             fontWeight = Bold,
             textAlign = TextAlign.Start,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 150.dp)
         )
-        Spacer(modifier = Modifier.height(10.dp))
         TextField(
             value = id,
             onValueChange = {
                 id = it
             },
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .padding(top = 10.dp),
             label = {Text("아이디를 입력해주세요")}
         )
-        Spacer(modifier = Modifier.height(20.dp))
         Text(
             text = "비밀번호",
             fontSize = 20.sp,
             fontWeight = Bold,
             textAlign = TextAlign.Start,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 20.dp)
         )
-        Spacer(modifier = Modifier.height(10.dp))
         TextField(
             value = pw,
             onValueChange = {
                 pw = it
             },
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .padding(top = 10.dp),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             visualTransformation = PasswordVisualTransformation(),
             label = {Text("비밀번호를 입력해주세요")}
         )
-        Spacer(modifier = Modifier.height(20.dp))
         Button(
             onClick = {
                 if(id == signupId && pw == signupPw) {
@@ -136,7 +138,9 @@ fun Login(signupId : String?, signupPw : String?, nickname : String?, mbti : Str
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xFF209672)
             ),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 20.dp)
         ) {
             Text(text = "로그인")
         }
