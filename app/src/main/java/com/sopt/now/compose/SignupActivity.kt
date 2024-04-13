@@ -163,12 +163,13 @@ fun Signup() {
                         Toast.makeText(context, "mbti를 입력해주세요", Toast.LENGTH_SHORT).show()
                     else -> {
                         Toast.makeText(context, "회원가입에 성공했습니다.", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(context, LoginActivity::class.java)
-                        intent.putExtra("id", id)
-                        intent.putExtra("pw", pw)
-                        intent.putExtra("nickname", nickname)
-                        intent.putExtra("mbti", mbti)
-                        context.startActivity(intent)
+                        Intent(context, LoginActivity::class.java).apply {
+                            putExtra("id", id)
+                            putExtra("pw", pw)
+                            putExtra("nickname", nickname)
+                            putExtra("mbti", mbti)
+                            context.startActivity(this)
+                        }
                     }
                 }
             },
