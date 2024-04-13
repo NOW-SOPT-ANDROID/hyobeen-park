@@ -1,9 +1,7 @@
 package com.sopt.now.compose
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Nickname
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -16,6 +14,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -30,9 +30,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -62,6 +64,18 @@ fun Signup() {
     var pw by remember { mutableStateOf("") }
     var nickname by remember { mutableStateOf("") }
     var mbti by remember { mutableStateOf("") }
+
+    var shouldShowPassword by remember {
+        mutableStateOf(false)
+    }
+    val passwordResource : (Boolean) -> Int = {
+        if(it) {
+            R.drawable.ic_baseline_visibility_white_24
+        } else {
+            R.drawable.ic_baseline_visibility_off_white_24
+        }
+    }
+
     Column (
         modifier = Modifier
             .padding(horizontal = 70.dp)
@@ -113,8 +127,19 @@ fun Signup() {
                 .fillMaxWidth()
                 .padding(top = 10.dp),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            visualTransformation = PasswordVisualTransformation(),
-            label = { Text("비밀번호를 입력해주세요") }
+            visualTransformation = if (shouldShowPassword) VisualTransformation.None
+                                   else PasswordVisualTransformation(),
+            label = { Text("비밀번호를 입력해주세요")},
+            trailingIcon = {
+                IconButton(onClick = {
+                    shouldShowPassword = !shouldShowPassword
+                }) {
+                    Icon(painter = painterResource(
+                        id = passwordResource(shouldShowPassword)),
+                        contentDescription = null
+                    )
+                }
+            }
         )
         Text(
             text = "닉네임",
