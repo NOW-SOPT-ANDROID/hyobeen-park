@@ -153,9 +153,9 @@ fun Signup() {
         Button(
             onClick = {
                 when {
-                    id.isBlank() || id.length < 6 || id.length > 10 ->
+                    id.isBlank() || id.length !in 6 .. 10 ->
                         Toast.makeText(context, "아이디는 6글자 이상, 10글자 이하로 입력해주세요", Toast.LENGTH_SHORT).show()
-                    pw.isBlank() || pw.length < 8 || pw.length > 12 ->
+                    pw.isBlank() || pw.length !in 8 .. 12 ->
                         Toast.makeText(context, "비밀번호는 8글자 이상, 12글자 이하로 입력해주세요", Toast.LENGTH_SHORT).show()
                     nickname.isBlank() ->
                         Toast.makeText(context, "닉네임을 입력해주세요", Toast.LENGTH_SHORT).show()
