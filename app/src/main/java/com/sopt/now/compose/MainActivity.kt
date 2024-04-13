@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
@@ -59,6 +60,7 @@ fun Main(id : String = "", pw : String = "", nickname : String = "", mbti : Stri
             .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Spacer(modifier = Modifier.height(70.dp))
         Image(
             painter = painterResource(id = R.drawable.ic_launcher_foreground),
             contentDescription = "Android",
@@ -66,7 +68,6 @@ fun Main(id : String = "", pw : String = "", nickname : String = "", mbti : Stri
                 .width(200.dp)
                 .height(200.dp)
                 .background(color = Color(0xFF209672))
-                .padding(top = 70.dp)
         )
         Text(
             text = nickname,
