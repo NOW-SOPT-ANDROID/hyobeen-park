@@ -4,6 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.sopt.now.LoginActivity.Companion.ID
+import com.sopt.now.LoginActivity.Companion.MBTI
+import com.sopt.now.LoginActivity.Companion.NICKNAME
+import com.sopt.now.LoginActivity.Companion.PW
 import com.sopt.now.databinding.ActivitySignupBinding
 
 class SignupActivity : AppCompatActivity() {
@@ -50,10 +54,10 @@ class SignupActivity : AppCompatActivity() {
         showToastMessage("회원가입에 성공했습니다!")
 
         Intent(this, LoginActivity::class.java).apply {
-            putExtra("id", id)
-            putExtra("pw", pw)
-            putExtra("nickname", nickname)
-            putExtra("mbti", mbti)
+            putExtra(ID, id)
+            putExtra(PW, pw)
+            putExtra(NICKNAME, nickname)
+            putExtra(MBTI, mbti)
             setResult(RESULT_OK, this)
             finish()
         }

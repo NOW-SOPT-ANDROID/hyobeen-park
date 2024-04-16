@@ -15,6 +15,14 @@ class LoginActivity : AppCompatActivity() {
     private var pw : String ?= null
     private var nickname : String ?= null
     private var mbti : String ?= null
+
+    companion object{
+        const val ID = "id"
+        const val PW = "pw"
+        const val NICKNAME = "nickname"
+        const val MBTI = "mbti"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -30,10 +38,10 @@ class LoginActivity : AppCompatActivity() {
         resultLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
-                id = result.data?.getStringExtra("id") ?: ""
-                pw = result.data?.getStringExtra("pw") ?: ""
-                nickname = result.data?.getStringExtra("nickname") ?: ""
-                mbti = result.data?.getStringExtra("mbti") ?: ""
+                id = result.data?.getStringExtra(ID) ?: ""
+                pw = result.data?.getStringExtra(PW) ?: ""
+                nickname = result.data?.getStringExtra(NICKNAME) ?: ""
+                mbti = result.data?.getStringExtra(MBTI) ?: ""
             }
         }
     }
@@ -52,7 +60,7 @@ class LoginActivity : AppCompatActivity() {
                 // 로그인 성공
                 Toast.makeText(this, "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()
                 Intent(this, MainActivity::class.java).apply {
-                    putExtra("id", id)
+                    putExtra(ID, id)
                     putExtra("nickname", nickname)
                     putExtra("mbti", mbti)
                     startActivity(this)
