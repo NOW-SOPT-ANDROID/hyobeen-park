@@ -34,9 +34,9 @@ class SignupActivity : AppCompatActivity() {
     private fun checkInputValid(id : String, pw : String, nickname : String, mbti : String) {
         // 입력 조건 + 공백 문자만 있지 않은지 확인
         when {
-            id.isBlank() || id.length < 6 || id.length > 10 ->
+            id.isBlank() || id.length !in 6..10 ->
                 showToastMessage("ID는 6자 이상, 10자 이하로 입력해주세요")
-            pw.isBlank() || pw.length < 8 || pw.length > 12 ->
+            pw.isBlank() || pw.length !in 8..12 ->
                 showToastMessage("비밀번호는 8자 이상, 12자 이하로 입력해주세요")
             nickname.isBlank() ->
                 showToastMessage("닉네임을 입력해주세요")
