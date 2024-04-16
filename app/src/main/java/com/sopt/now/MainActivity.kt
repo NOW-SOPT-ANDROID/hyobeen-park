@@ -19,8 +19,8 @@ class MainActivity : AppCompatActivity() {
         intent.apply {
             with(binding) {
                 tvMainNickname.setText(getStringExtra("nickname"))
-                tvMainIdcontent.setText(getStringExtra("id"))
-                tvMainMbticontent.setText(getStringExtra("mbti"))
+                tvMainIdContent.setText(getStringExtra("id"))
+                tvMainMbtiContent.setText(getStringExtra("mbti"))
             }
         }
     }
