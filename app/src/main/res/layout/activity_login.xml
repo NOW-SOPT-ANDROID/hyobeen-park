@@ -58,7 +58,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_login_pw"/>
 
     <Button
-        android:id="@+id/bt_login_signin"
+        android:id="@+id/btn_login_signin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -71,7 +71,7 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
-        android:id="@+id/bt_login_signup"
+        android:id="@+id/btn_login_signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#00FF0000"
@@ -79,7 +79,7 @@
         android:textSize="15sp"
         android:textStyle="bold"
         android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/bt_login_signin"
-        app:layout_constraintEnd_toEndOf="@id/bt_login_signin"/>
+        app:layout_constraintTop_toBottomOf="@id/btn_login_signin"
+        app:layout_constraintEnd_toEndOf="@id/btn_login_signin"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

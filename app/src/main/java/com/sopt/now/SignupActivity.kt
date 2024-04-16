@@ -19,7 +19,7 @@ class SignupActivity : AppCompatActivity() {
 
     private fun initSignUpBtnClickListener() {
         // 회원가입 버튼 클릭이벤트
-        binding.btSignupSignup.setOnClickListener {
+        binding.btnSignupSignup.setOnClickListener {
             // 회원가입 정보 저장
             with(binding) {
                 val id = etSignupId.text.toString()

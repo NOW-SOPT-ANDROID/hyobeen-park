@@ -42,14 +42,14 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initSignUpBtnClickListener() {
         // 회원가입 버튼 클릭이벤트
-        binding.btLoginSignup.setOnClickListener {
+        binding.btnLoginSignup.setOnClickListener {
             val intent = Intent(this, SignupActivity::class.java)
             resultLauncher.launch(intent)
         }
     }
 
     private fun initLoginBtnClickListener() {
-        binding.btLoginSignin.setOnClickListener {
+        binding.btnLoginSignin.setOnClickListener {
             if (binding.etLoginId.text.toString() == id && binding.etLoginPw.text.toString() == pw) {
                 // 로그인 성공
                 Toast.makeText(this, "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()
