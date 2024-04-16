@@ -13,10 +13,10 @@ import com.sopt.now.databinding.ActivitySignupBinding
 class LoginActivity : AppCompatActivity() {
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     private lateinit var binding : ActivityLoginBinding
-    private var id = ""
-    private var pw = ""
-    private var nickname = ""
-    private var mbti = ""
+    private var id : String ?= null
+    private var pw : String ?= null
+    private var nickname : String ?= null
+    private var mbti : String ?= null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
