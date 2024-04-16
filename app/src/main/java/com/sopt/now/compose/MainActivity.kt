@@ -40,10 +40,10 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     Main(
-                        intent.getStringExtra("id")!!,
-                        intent.getStringExtra("pw")!!,
-                        intent.getStringExtra("nickname")!!,
-                        intent.getStringExtra("mbti")!!
+                        intent.getStringExtra("id"),
+                        intent.getStringExtra("pw"),
+                        intent.getStringExtra("nickname"),
+                        intent.getStringExtra("mbti")
                     )
                 }
             }
@@ -52,7 +52,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Main(id : String = "", pw : String = "", nickname : String = "", mbti : String = "") {
+fun Main(id : String ?= "", pw : String ?= "", nickname : String ?= "", mbti : String ?= "") {
     Column (
         modifier = Modifier
             .padding(horizontal = 40.dp)
@@ -68,12 +68,14 @@ fun Main(id : String = "", pw : String = "", nickname : String = "", mbti : Stri
                 .height(200.dp)
                 .background(color = Color(0xFF209672))
         )
-        Text(
-            text = nickname,
-            fontSize = 30.sp,
-            fontWeight = Bold,
-            modifier = Modifier.padding(top = 30.dp)
-        )
+        nickname?.let {
+            Text(
+                text = it,
+                fontSize = 30.sp,
+                fontWeight = Bold,
+                modifier = Modifier.padding(top = 30.dp)
+            )
+        }
         Row (
             modifier = Modifier
                 .fillMaxWidth()
@@ -86,12 +88,14 @@ fun Main(id : String = "", pw : String = "", nickname : String = "", mbti : Stri
                 fontWeight = Bold,
                 textAlign = TextAlign.Start
             )
-            Text(
-                text = id,
-                fontSize = 30.sp,
-                textAlign = TextAlign.Start,
-                modifier = Modifier.padding(20.dp, 0.dp)
-            )
+            id?.let {
+                Text(
+                    text = it,
+                    fontSize = 30.sp,
+                    textAlign = TextAlign.Start,
+                    modifier = Modifier.padding(20.dp, 0.dp)
+                )
+            }
         }
         Row (
             modifier = Modifier
@@ -105,12 +109,14 @@ fun Main(id : String = "", pw : String = "", nickname : String = "", mbti : Stri
                 fontWeight = Bold,
                 textAlign = TextAlign.Start
             )
-            Text(
-                text = mbti,
-                fontSize = 30.sp,
-                textAlign = TextAlign.Start,
-                modifier = Modifier.padding(20.dp, 0.dp)
-            )
+            mbti?.let {
+                Text(
+                    text = it,
+                    fontSize = 30.sp,
+                    textAlign = TextAlign.Start,
+                    modifier = Modifier.padding(20.dp, 0.dp)
+                )
+            }
         }
 
     }
