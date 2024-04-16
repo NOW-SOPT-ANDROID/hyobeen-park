@@ -49,8 +49,9 @@ class LoginActivity : AppCompatActivity() {
     private fun initSignUpBtnClickListener() {
         // 회원가입 버튼 클릭이벤트
         binding.btnLoginSignup.setOnClickListener {
-            val intent = Intent(this, SignupActivity::class.java)
-            resultLauncher.launch(intent)
+            Intent(this, SignupActivity::class.java).apply {
+                resultLauncher.launch(this)
+            }
         }
     }
 
