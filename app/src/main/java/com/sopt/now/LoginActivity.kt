@@ -22,12 +22,12 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 회원가입 버튼 클릭이벤트
-        binding.btLoginSignup.setOnClickListener {
-            val intent = Intent(this, SignupActivity::class.java)
-            resultLauncher.launch(intent)
-        }
+        getSignUpResults()
+        initLoginBtnListener()
+        initSignUpBtnListener()
+    }
 
+    private fun getSignUpResults() {
         // 회원가입 정보 받아오기
         resultLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()) { result ->
@@ -38,7 +38,17 @@ class LoginActivity : AppCompatActivity() {
                 mbti = result.data?.getStringExtra("mbti") ?: ""
             }
         }
+    }
 
+    private fun initSignUpBtnListener() {
+        // 회원가입 버튼 클릭이벤트
+        binding.btLoginSignup.setOnClickListener {
+            val intent = Intent(this, SignupActivity::class.java)
+            resultLauncher.launch(intent)
+        }
+    }
+
+    private fun initLoginBtnListener() {
         binding.btLoginSignin.setOnClickListener {
             if (binding.etLoginId.text.toString() == id && binding.etLoginPw.text.toString() == pw) {
                 // 로그인 성공
