@@ -23,8 +23,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         getSignUpResults()
-        initLoginBtnListener()
-        initSignUpBtnListener()
+        initLoginBtnClickListener()
+        initSignUpBtnClickListener()
     }
 
     private fun getSignUpResults() {
@@ -40,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun initSignUpBtnListener() {
+    private fun initSignUpBtnClickListener() {
         // 회원가입 버튼 클릭이벤트
         binding.btLoginSignup.setOnClickListener {
             val intent = Intent(this, SignupActivity::class.java)
@@ -48,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun initLoginBtnListener() {
+    private fun initLoginBtnClickListener() {
         binding.btLoginSignin.setOnClickListener {
             if (binding.etLoginId.text.toString() == id && binding.etLoginPw.text.toString() == pw) {
                 // 로그인 성공
