@@ -15,12 +15,17 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val id = intent.getStringExtra("id")
-        val nickname = intent.getStringExtra("nickname")
-        val mbti = intent.getStringExtra("mbti")
+        initTextViews()
 
-        binding.tvMainNickname.setText(nickname)
-        binding.tvMainIdcontent.setText(id)
-        binding.tvMainMbticontent.setText(mbti)
+    }
+
+    private fun initTextViews() {
+        intent.apply {
+            with(binding) {
+                tvMainNickname.setText(getStringExtra("nickname"))
+                tvMainIdcontent.setText(getStringExtra("id"))
+                tvMainMbticontent.setText(getStringExtra("mbti"))
+            }
+        }
     }
 }
