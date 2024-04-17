@@ -24,4 +24,9 @@
     <string name="tv_main_id">ID : </string>
     <string name="tv_main_mbti">MBTI : </string>
 
+    <!-- 홈 메뉴 -->
+    <string name="menu_home">홈</string>
+    <string name="menu_search">검색</string>
+    <string name="menu_mypage">마이페이지</string>
+
 </resources>
