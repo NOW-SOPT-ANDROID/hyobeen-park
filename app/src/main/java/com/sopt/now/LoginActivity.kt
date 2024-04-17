@@ -60,7 +60,7 @@ class LoginActivity : AppCompatActivity() {
             if (binding.etLoginId.text.toString() == id && binding.etLoginPw.text.toString() == pw) {
                 // 로그인 성공
                 Toast.makeText(this, "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()
-                Intent(this, MainActivity::class.java).apply {
+                Intent(this, HomeActivity::class.java).apply {
                     putExtra(ID, id)
                     putExtra("nickname", nickname)
                     putExtra("mbti", mbti)
