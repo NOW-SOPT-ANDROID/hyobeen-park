@@ -1,4 +1,4 @@
-package com.sopt.now
+package com.sopt.now.Main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

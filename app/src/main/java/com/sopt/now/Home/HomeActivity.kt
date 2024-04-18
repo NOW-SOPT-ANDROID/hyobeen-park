@@ -1,8 +1,11 @@
-package com.sopt.now
+package com.sopt.now.Home
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.sopt.now.Mypage.MypageFragment
+import com.sopt.now.R
+import com.sopt.now.Search.SearchFragment
 import com.sopt.now.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
@@ -25,17 +28,17 @@ class HomeActivity : AppCompatActivity() {
     private fun clickBottomNavigation() {
         binding.bnvHome.setOnItemSelectedListener{
             when (it.itemId) {
-                R.id.menu_home-> {
+                R.id.menu_home -> {
                     replaceFragment(HomeFragment())
                     true
                 }
 
-                R.id.menu_search-> {
+                R.id.menu_search -> {
                     replaceFragment(SearchFragment())
                     true
                 }
 
-                R.id.menu_mypage-> {
+                R.id.menu_mypage -> {
                     replaceFragment(MypageFragment())
                     true
                 }

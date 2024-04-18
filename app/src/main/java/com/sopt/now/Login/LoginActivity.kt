@@ -1,4 +1,4 @@
-package com.sopt.now
+package com.sopt.now.Login
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,8 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.sopt.now.Home.HomeActivity
+import com.sopt.now.Signup.SignupActivity
 import com.sopt.now.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {

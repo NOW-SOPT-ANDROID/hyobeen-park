@@ -1,6 +1,5 @@
-package com.sopt.now
+package com.sopt.now.Friend
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

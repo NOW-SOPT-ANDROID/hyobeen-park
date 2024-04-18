@@ -1,13 +1,14 @@
-package com.sopt.now
+package com.sopt.now.Signup
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.sopt.now.LoginActivity.Companion.ID
-import com.sopt.now.LoginActivity.Companion.MBTI
-import com.sopt.now.LoginActivity.Companion.NICKNAME
-import com.sopt.now.LoginActivity.Companion.PW
+import com.sopt.now.Login.LoginActivity
+import com.sopt.now.Login.LoginActivity.Companion.ID
+import com.sopt.now.Login.LoginActivity.Companion.MBTI
+import com.sopt.now.Login.LoginActivity.Companion.NICKNAME
+import com.sopt.now.Login.LoginActivity.Companion.PW
 import com.sopt.now.databinding.ActivitySignupBinding
 
 class SignupActivity : AppCompatActivity() {
