@@ -42,6 +42,7 @@ class HomeActivity: ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ){
+
                     HomeScreen()
                 }
             }
@@ -105,14 +106,17 @@ class HomeActivity: ComponentActivity() {
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 when(selectedItem) {
-                    0 -> Text("HOME")
-                    1 -> Text("SEARCH")
-                    2 -> Text("MYPAGE")
+                    0 -> HomeFragment()
+                    1 -> SearchFragment()
+                    2 -> MypageFragment(
+                        intent.getStringExtra("id"),
+                        intent.getStringExtra("pw"),
+                        intent.getStringExtra("nickname"),
+                        intent.getStringExtra("mbti")
+                    )
                 }
             }
-
         }
-
     }
 
 

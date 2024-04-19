@@ -39,12 +39,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Main(
-                        intent.getStringExtra("id"),
-                        intent.getStringExtra("pw"),
-                        intent.getStringExtra("nickname"),
-                        intent.getStringExtra("mbti")
-                    )
+                    Main()
                 }
             }
         }
@@ -52,75 +47,8 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Main(id : String ?= "", pw : String ?= "", nickname : String ?= "", mbti : String ?= "") {
-    Column (
-        modifier = Modifier
-            .padding(horizontal = 40.dp)
-            .fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Spacer(modifier = Modifier.height(70.dp))
-        Image(
-            painter = painterResource(id = R.drawable.ic_launcher_foreground),
-            contentDescription = "Android",
-            Modifier
-                .width(200.dp)
-                .height(200.dp)
-                .background(color = Color(0xFF209672))
-        )
-        nickname?.let {
-            Text(
-                text = it,
-                fontSize = 30.sp,
-                fontWeight = Bold,
-                modifier = Modifier.padding(top = 30.dp)
-            )
-        }
-        Row (
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 40.dp),
-            horizontalArrangement = Arrangement.Start
-        ) {
-            Text(
-                text = "ID : ",
-                fontSize = 30.sp,
-                fontWeight = Bold,
-                textAlign = TextAlign.Start
-            )
-            id?.let {
-                Text(
-                    text = it,
-                    fontSize = 30.sp,
-                    textAlign = TextAlign.Start,
-                    modifier = Modifier.padding(20.dp, 0.dp)
-                )
-            }
-        }
-        Row (
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 15.dp),
-            horizontalArrangement = Arrangement.Start
-        ) {
-            Text(
-                text = "MBTI : ",
-                fontSize = 30.sp,
-                fontWeight = Bold,
-                textAlign = TextAlign.Start
-            )
-            mbti?.let {
-                Text(
-                    text = it,
-                    fontSize = 30.sp,
-                    textAlign = TextAlign.Start,
-                    modifier = Modifier.padding(20.dp, 0.dp)
-                )
-            }
-        }
-
-    }
-
+fun Main() {
+    Text(text = "MAIN")
 }
 
 @Preview(showBackground = true)
