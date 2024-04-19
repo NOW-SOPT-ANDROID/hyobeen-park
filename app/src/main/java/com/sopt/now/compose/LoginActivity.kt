@@ -145,7 +145,7 @@ fun Login(signupId : String?, signupPw : String?, nickname : String?, mbti : Str
             onClick = {
                 if(id == signupId && pw == signupPw) {
                     Toast.makeText(context, "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()
-                    Intent(context, MainActivity::class.java).apply {
+                    Intent(context, HomeActivity::class.java).apply {
                         putExtra("id", id)
                         putExtra("pw", pw)
                         putExtra("nickname", nickname)
