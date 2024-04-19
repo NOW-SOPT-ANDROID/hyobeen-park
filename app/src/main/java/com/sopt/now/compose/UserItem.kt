@@ -2,6 +2,7 @@ package com.sopt.now.compose
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -31,28 +32,33 @@ fun UserItem(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 10.dp),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Image(
-            painter = painterResource(id = painter),
-            contentDescription = contentDescription,
-            Modifier
-                .width(imageSize)
-                .height(imageSize)
-                .background(color = Color(0xFF209672))
-        )
+        Row (
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                painter = painterResource(id = painter),
+                contentDescription = contentDescription,
+                Modifier
+                    .width(imageSize)
+                    .height(imageSize)
+                    .background(color = Color(0xFF209672))
+            )
 
-        Text(
-            text = nickname,
-            fontSize = fontSize,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(start = 30.dp)
-        )
+            Text(
+                text = nickname,
+                fontSize = fontSize,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(start = 20.dp)
+            )
+        }
 
         Text(
             text = mbti,
-            fontSize = fontSize,
-            modifier = Modifier.padding(start = 160.dp))
+            fontSize = fontSize
+        )
 
     }
 }
