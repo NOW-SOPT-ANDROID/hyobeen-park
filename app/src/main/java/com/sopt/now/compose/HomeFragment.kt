@@ -1,9 +1,7 @@
 package com.sopt.now.compose
 
-import android.provider.ContactsContract.CommonDataKinds.Nickname
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
