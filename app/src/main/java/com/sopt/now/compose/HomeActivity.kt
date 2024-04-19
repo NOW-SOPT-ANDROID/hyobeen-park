@@ -106,7 +106,10 @@ class HomeActivity: ComponentActivity() {
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 when(selectedItem) {
-                    0 -> HomeFragment()
+                    0 -> HomeFragment(
+                        intent.getStringExtra("nickname"),
+                        intent.getStringExtra("mbti")
+                    )
                     1 -> SearchFragment()
                     2 -> MypageFragment(
                         intent.getStringExtra("id"),
