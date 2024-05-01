@@ -37,9 +37,9 @@ class MypageFragment : Fragment() {
     private fun initTextViews() {
         activity?.intent?.apply {
             with(binding) {
-                tvMainNickname.setText(getStringExtra(NICKNAME))
-                tvMainIdContent.setText(getStringExtra(ID))
-                tvMainMbtiContent.setText(getStringExtra(MBTI))
+                tvMypageNickname.setText(getStringExtra(NICKNAME))
+                tvMypageIdContent.setText(getStringExtra(ID))
+                tvMypageMbti.setText(getStringExtra(MBTI))
             }
         }
     }

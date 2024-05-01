@@ -7,6 +7,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.sopt.now.Home.HomeActivity
+import com.sopt.now.R
 import com.sopt.now.Signup.SignupActivity
 import com.sopt.now.databinding.ActivityLoginBinding
 
@@ -61,16 +62,16 @@ class LoginActivity : AppCompatActivity() {
         binding.btnLoginSignin.setOnClickListener {
             if (binding.etLoginId.text.toString() == id && binding.etLoginPw.text.toString() == pw) {
                 // 로그인 성공
-                Toast.makeText(this, "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.login_success, Toast.LENGTH_SHORT).show()
                 Intent(this, HomeActivity::class.java).apply {
                     putExtra(ID, id)
-                    putExtra("nickname", nickname)
-                    putExtra("mbti", mbti)
+                    putExtra(NICKNAME, nickname)
+                    putExtra(MBTI, mbti)
                     startActivity(this)
                 }
             } else {
                 // 아이디 또는 비밀번호가 일치하지 않을 때
-                Toast.makeText(this, "아이디와 비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.login_fail, Toast.LENGTH_SHORT).show()
             }
         }
     }

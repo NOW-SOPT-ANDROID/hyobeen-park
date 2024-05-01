@@ -9,6 +9,7 @@ import com.sopt.now.Login.LoginActivity.Companion.ID
 import com.sopt.now.Login.LoginActivity.Companion.MBTI
 import com.sopt.now.Login.LoginActivity.Companion.NICKNAME
 import com.sopt.now.Login.LoginActivity.Companion.PW
+import com.sopt.now.R
 import com.sopt.now.databinding.ActivitySignupBinding
 
 class SignupActivity : AppCompatActivity() {
@@ -40,19 +41,19 @@ class SignupActivity : AppCompatActivity() {
         // 입력 조건 + 공백 문자만 있지 않은지 확인
         when {
             id.isBlank() || id.length !in 6..10 ->
-                showToastMessage("ID는 6자 이상, 10자 이하로 입력해주세요")
+                showToastMessage(R.string.signup_id_fail)
             pw.isBlank() || pw.length !in 8..12 ->
-                showToastMessage("비밀번호는 8자 이상, 12자 이하로 입력해주세요")
+                showToastMessage(R.string.signup_password_fail)
             nickname.isBlank() ->
-                showToastMessage("닉네임을 입력해주세요")
+                showToastMessage(R.string.signup_nickname_fail)
             mbti.isBlank() ->
-                showToastMessage("MBTI를 입력해주세요")
+                showToastMessage(R.string.signup_mbti_fail)
             else -> successSignUp(id, pw, nickname, mbti)
         }
     }
 
     private fun successSignUp(id : String, pw : String, nickname : String, mbti : String) {
-        showToastMessage("회원가입에 성공했습니다!")
+        showToastMessage(R.string.signup_success)
 
         Intent(this, LoginActivity::class.java).apply {
             putExtra(ID, id)
@@ -65,7 +66,7 @@ class SignupActivity : AppCompatActivity() {
     }
 
 
-    private fun showToastMessage(message : String) {
+    private fun showToastMessage(message: Int) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
