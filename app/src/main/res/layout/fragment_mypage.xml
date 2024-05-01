@@ -1,76 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="70dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:padding="70dp">
 
     <ImageView
-        android:id="@+id/iv_main_profile"
+        android:id="@+id/iv_mypage_profile"
         android:layout_width="200dp"
         android:layout_height="0dp"
-        android:src="@drawable/ic_launcher_foreground"
         android:background="#B4E2D4"
+        android:src="@drawable/ic_launcher_foreground"
         app:layout_constraintDimensionRatio="1"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Space
-        android:id="@+id/sp_main_spacer"
+        android:id="@+id/sp_mypage_spacer"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        app:layout_constraintTop_toBottomOf="@id/iv_main_profile"
-        app:layout_constraintStart_toStartOf="@id/iv_main_profile"/>
+        app:layout_constraintStart_toStartOf="@id/iv_mypage_profile"
+        app:layout_constraintTop_toBottomOf="@id/iv_mypage_profile" />
 
     <TextView
-        android:id="@+id/tv_main_nickname"
+        android:id="@+id/tv_mypage_nickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/sp_main_spacer"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/sp_mypage_spacer" />
 
     <TextView
-        android:id="@+id/tv_main_id"
+        android:id="@+id/tv_mypage_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="40dp"
-        android:text="@string/tv_main_id"
+        android:text="@string/tv_mypage_id"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/tv_main_nickname"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_mypage_nickname" />
 
     <TextView
-        android:id="@+id/tv_main_id_content"
+        android:id="@+id/tv_mypage_id_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingHorizontal="20dp"
         android:textSize="30sp"
-        app:layout_constraintTop_toTopOf="@id/tv_main_id"
-        app:layout_constraintStart_toEndOf="@id/tv_main_id"/>
+        app:layout_constraintStart_toEndOf="@id/tv_mypage_id"
+        app:layout_constraintTop_toTopOf="@id/tv_mypage_id" />
 
     <TextView
-        android:id="@+id/tv_main_mbti"
+        android:id="@+id/tv_mypage_mbti"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="30dp"
-        android:text="@string/tv_main_mbti"
+        android:text="@string/tv_mypage_mbti"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/tv_main_id"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_mypage_id" />
 
     <TextView
-        android:id="@+id/tv_main_mbti_content"
+        android:id="@+id/tv_mypage_mbti_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingHorizontal="20dp"
         android:textSize="30sp"
-        app:layout_constraintTop_toTopOf="@id/tv_main_mbti"
-        app:layout_constraintStart_toEndOf="@id/tv_main_mbti"/>
+        app:layout_constraintStart_toEndOf="@id/tv_mypage_mbti"
+        app:layout_constraintTop_toTopOf="@id/tv_mypage_mbti" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

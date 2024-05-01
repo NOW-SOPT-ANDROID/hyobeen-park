@@ -6,13 +6,13 @@
         android:icon="@drawable/ic_home_white_24"
         android:title="@string/menu_home"/>
 
-    <!-- HOME -->
+    <!-- SEARCH -->
     <item
         android:id="@+id/menu_search"
         android:icon="@drawable/ic_search_white_24"
         android:title="@string/menu_search"/>
 
-    <!-- HOME -->
+    <!-- MYPAGE -->
     <item
         android:id="@+id/menu_mypage"
         android:icon="@drawable/ic_person_white_24"

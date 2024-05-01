@@ -20,9 +20,9 @@
     <string name="tv_signup_mbti">MBTI</string>
     <string name="et_signup_mbti_hint">MBTI를 입력해주세요</string>
 
-    <!-- 메인 페이지 -->
-    <string name="tv_main_id">ID : </string>
-    <string name="tv_main_mbti">MBTI : </string>
+    <!-- 마이 페이지 -->
+    <string name="tv_mypage_id">ID : </string>
+    <string name="tv_mypage_mbti">MBTI : </string>
 
     <!-- 홈 메뉴 -->
     <string name="menu_home">홈</string>
