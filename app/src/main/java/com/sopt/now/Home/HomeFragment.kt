@@ -46,15 +46,11 @@ class HomeFragment : Fragment() {
 
     private fun initUserData() {
         activity?.intent?.apply {
-            user = getStringExtra(LoginActivity.NICKNAME)?.let {
-                getStringExtra(LoginActivity.MBTI)?.let { it1 ->
-                    User(
-                        R.drawable.ic_person_white_24,
-                        it,
-                        it1
-                    )
-                }
-            }
+            user = User(
+                R.drawable.ic_person_white_24,
+                getStringExtra(LoginActivity.NICKNAME) ?: "닉네임",
+                getStringExtra(LoginActivity.MBTI) ?: "MBTI"
+            )
         }
     }
 
