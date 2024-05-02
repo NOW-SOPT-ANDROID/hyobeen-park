@@ -32,7 +32,6 @@ class HomeFragment : Fragment() {
     private val binding: FragmentHomeBinding
         get() = requireNotNull(_binding) { }
 
-    private val homeViewModel = HomeViewModel()
     private var user: User? = null
     private var friendList: List<Friend> ?= null
 
