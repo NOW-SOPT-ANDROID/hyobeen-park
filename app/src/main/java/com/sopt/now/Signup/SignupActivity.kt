@@ -2,7 +2,9 @@ package com.sopt.now.Signup
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.sopt.now.Login.LoginActivity
 import com.sopt.now.R
@@ -14,6 +16,9 @@ import com.sopt.now.databinding.ActivitySignupBinding
 class SignupActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupBinding
     private lateinit var user: User
+
+    private val signupViewModel by viewModels<SignupViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignupBinding.inflate(layoutInflater)
@@ -41,21 +46,10 @@ class SignupActivity : AppCompatActivity() {
 
     private fun checkInputValid(user: User, pw: String) {
         // 입력 조건 + 공백 문자만 있지 않은지 확인
-        when {
-            user.id.isBlank() || user.id.length !in 6..10 ->
-                showToastMessage(R.string.signup_id_fail)
-
-            pw.isBlank() || pw.length !in 8..12 ->
-                showToastMessage(R.string.signup_password_fail)
-
-            user.nickname.isBlank() ->
-                showToastMessage(R.string.signup_nickname_fail)
-
-            user.mbti.isBlank() ->
-                showToastMessage(R.string.signup_mbti_fail)
-
-            else -> successSignUp(user, pw)
-        }
+        val signupValidMsg = signupViewModel.checkSignupValidation(user.id, pw, user.nickname, user.mbti)
+        showToastMessage(signupValidMsg)
+        Log.d("check-id", user.id.length.toString())
+        if(signupValidMsg == R.string.signup_success) successSignUp(user, pw)
     }
 
     private fun successSignUp(user: User, pw: String) {
