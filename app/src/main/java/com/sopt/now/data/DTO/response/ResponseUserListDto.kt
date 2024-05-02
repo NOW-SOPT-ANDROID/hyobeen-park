@@ -1,5 +1,6 @@
 package com.sopt.now.data.DTO.response
 
+import com.sopt.now.Friend.Friend
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -14,19 +15,15 @@ data class ResponseUserListDto(
     @SerialName("total_pages")
     val total_pages: Int,
     @SerialName("data")
-    val data: List<ResponseUserListDataDto>
+    val data: List<Friend>,
+    @SerialName("support")
+    val support: ResponseUserListSupportDto,
 )
 
 @Serializable
-data class ResponseUserListDataDto(
-    @SerialName("id")
-    val id: Int,
-    @SerialName("email")
-    val email: String,
-    @SerialName("first_name")
-    val first_name: String,
-    @SerialName("last_name")
-    val last_name: String,
-    @SerialName("avatar")
-    val avatar: String,
+data class ResponseUserListSupportDto(
+    @SerialName("url")
+    val url: String,
+    @SerialName("text")
+    val text: String,
 )
