@@ -24,6 +24,7 @@ import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -38,6 +39,11 @@ import com.sopt.now.compose.data.Key.PW
 import com.sopt.now.compose.ui.theme.NOWSOPTAndroidTheme
 
 class MainActivity : ComponentActivity() {
+    private lateinit var id: String
+    private lateinit var pw: String
+    private lateinit var nickname: String
+    private lateinit var mbti: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -46,6 +52,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    initUserData()
                     MainScreen()
                 }
             }
@@ -109,20 +116,22 @@ class MainActivity : ComponentActivity() {
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 when (selectedItem) {
-                    0 -> HomeScreen(
-                        intent.getStringExtra(NICKNAME),
-                        intent.getStringExtra(MBTI)
-                    )
-
+                    0 -> HomeScreen(nickname, mbti)
                     1 -> SearchScreen()
-                    2 -> MypageScreen(
-                        intent.getStringExtra(ID),
-                        intent.getStringExtra(PW),
-                        intent.getStringExtra(NICKNAME),
-                        intent.getStringExtra(MBTI)
-                    )
+                    2 -> MypageScreen(id, pw, nickname, mbti)
                 }
             }
+        }
+    }
+
+
+    @Composable
+    fun initUserData() {
+        intent.apply {
+            id = getStringExtra(ID) ?: ""
+            pw = getStringExtra(PW) ?: ""
+            nickname = getStringExtra(NICKNAME) ?: ""
+            mbti = getStringExtra(MBTI) ?: ""
         }
     }
 
