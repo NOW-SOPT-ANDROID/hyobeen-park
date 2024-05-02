@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun MypageFragment(id: String? = "", pw: String? = "", nickname: String? = "", mbti: String? = "") {
+fun MypageScreen(id: String? = "", pw: String? = "", nickname: String? = "", mbti: String? = "") {
     Column(
         modifier = Modifier
             .padding(horizontal = 40.dp)

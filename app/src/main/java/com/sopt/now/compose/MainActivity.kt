@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    HomeScreen()
+                    MainScreen()
                 }
             }
         }
@@ -56,7 +56,7 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     @Preview(showBackground = true)
     @Composable
-    private fun HomeScreen() {
+    private fun MainScreen() {
         var selectedItem by remember { mutableIntStateOf(0) }
         val items = listOf(
             BottomNavigationItem(
@@ -105,13 +105,13 @@ class MainActivity : ComponentActivity() {
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 when (selectedItem) {
-                    0 -> HomeFragment(
+                    0 -> HomeScreen(
                         intent.getStringExtra("nickname"),
                         intent.getStringExtra("mbti")
                     )
 
-                    1 -> SearchFragment()
-                    2 -> MypageFragment(
+                    1 -> SearchScreen()
+                    2 -> MypageScreen(
                         intent.getStringExtra("id"),
                         intent.getStringExtra("pw"),
                         intent.getStringExtra("nickname"),

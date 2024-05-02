@@ -7,7 +7,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun HomeFragment(nickname: String?, mbti: String?){
+fun HomeScreen(nickname: String?, mbti: String?){
     val homeViewModel = HomeViewModel()
     val friendsList = homeViewModel.getFriendsData()
 
