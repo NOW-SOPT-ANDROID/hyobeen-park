@@ -66,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<ResponseSignupDto>, t: Throwable) {
-                    Toast.makeText(this@LoginActivity, "서버 에러 발생", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LoginActivity, R.string.server_connection_error, Toast.LENGTH_SHORT).show()
                 }
             })
         }

@@ -96,7 +96,7 @@ class HomeFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<ResponseUserInfoDto>, t: Throwable) {
-                Toast.makeText(context, "서버 통신 에러", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.server_connection_error, Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -118,7 +118,7 @@ class HomeFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<ResponseUserListDto>, t: Throwable) {
-                Toast.makeText(context, "서버 통신 에러", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.server_connection_error, Toast.LENGTH_SHORT).show()
             }
         })
     }
