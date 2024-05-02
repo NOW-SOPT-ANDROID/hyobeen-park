@@ -10,7 +10,7 @@ data class ResponseUserInfoDto(
     @SerialName("message")
     val message: String,
     @SerialName("data")
-    val data: List<ResponseUserInfoDataDto>,
+    val data: ResponseUserInfoDataDto,
 )
 
 @Serializable
