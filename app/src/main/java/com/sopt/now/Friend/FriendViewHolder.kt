@@ -1,14 +1,17 @@
 package com.sopt.now.Friend
 
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.sopt.now.databinding.ItemFriendBinding
 
 class FriendViewHolder(private val binding: ItemFriendBinding): RecyclerView.ViewHolder(binding.root){
     fun onBind(friendData: Friend) {
         binding.run {
-            ivFriendProfileImg.setImageResource(friendData.profileImage)
-            tvFriendNickname.text = friendData.nickname
-            tvFriendMbti.text = friendData.mbti
+            Glide.with(root.context)
+                .load(friendData.avatar)
+                .into(ivFriendProfileImg)
+            tvFriendNickname.text = friendData.first_name
+            tvFriendPhone.text = friendData.email
         }
     }
 }
