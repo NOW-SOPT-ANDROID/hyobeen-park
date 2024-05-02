@@ -53,6 +53,7 @@ class SignupActivity : AppCompatActivity() {
         // 입력 조건 확인
         val signupValidMsg =
             signupViewModel.checkSignupValidation(user.id, pw, user.nickname, user.phone)
+        showToastMessage(signupValidMsg)
         if (signupValidMsg == R.string.signup_success) successSignUp(user, pw)
     }
 
