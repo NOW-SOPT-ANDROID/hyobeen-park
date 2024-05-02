@@ -11,7 +11,7 @@
         android:layout_height="0dp"
         android:layout_marginVertical="20dp"
         android:layout_marginStart="20dp"
-        android:background="@drawable/shape_rectangle_radius_10dp"
+        android:background="@drawable/shape_line_10_rect"
         android:backgroundTint="#B4E2D4"
         android:clipToOutline="true"
         android:src="@drawable/ic_launcher_foreground"
