@@ -1,18 +1,18 @@
 package com.sopt.now.Mypage
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.sopt.now.Login.LoginActivity.Companion.USER
+import com.sopt.now.User.User
 import com.sopt.now.databinding.FragmentMypageBinding
-import com.sopt.now.Login.LoginActivity.Companion.ID
-import com.sopt.now.Login.LoginActivity.Companion.MBTI
-import com.sopt.now.Login.LoginActivity.Companion.NICKNAME
 
 class MypageFragment : Fragment() {
-    private var _binding : FragmentMypageBinding? = null
-    private val binding : FragmentMypageBinding
+    private var _binding: FragmentMypageBinding? = null
+    private val binding: FragmentMypageBinding
         get() = requireNotNull(_binding) { }
 
     override fun onCreateView(
@@ -37,9 +37,14 @@ class MypageFragment : Fragment() {
     private fun initTextViews() {
         activity?.intent?.apply {
             with(binding) {
-                tvMypageNickname.setText(getStringExtra(NICKNAME))
-                tvMypageIdContent.setText(getStringExtra(ID))
-                tvMypageMbti.setText(getStringExtra(MBTI))
+                val user = if (Build.VERSION.SDK_INT >= 33) {
+                    getParcelableExtra(USER, User::class.java)
+                } else {
+                    getParcelableExtra(USER)
+                }
+                tvMypageNickname.setText(user?.nickname)
+                tvMypageIdContent.setText(user?.id)
+                tvMypageMbtiContent.setText(user?.mbti)
             }
         }
     }
