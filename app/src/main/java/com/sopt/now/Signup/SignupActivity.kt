@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.sopt.now.Login.LoginActivity
-import com.sopt.now.Login.LoginActivity.Companion.PW
-import com.sopt.now.Login.LoginActivity.Companion.USER
 import com.sopt.now.R
 import com.sopt.now.User.User
+import com.sopt.now.data.Key.PW
+import com.sopt.now.data.Key.USER
 import com.sopt.now.databinding.ActivitySignupBinding
 
 class SignupActivity : AppCompatActivity() {

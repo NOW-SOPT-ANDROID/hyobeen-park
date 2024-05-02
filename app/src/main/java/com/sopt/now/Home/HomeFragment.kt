@@ -9,9 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sopt.now.Friend.FriendAdapter
-import com.sopt.now.Login.LoginActivity
 import com.sopt.now.User.User
 import com.sopt.now.User.UserAdapter
+import com.sopt.now.data.Key.USER
 import com.sopt.now.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -47,9 +47,9 @@ class HomeFragment : Fragment() {
     private fun initUserData() {
         activity?.intent?.apply {
             user = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                getParcelableExtra(LoginActivity.USER, User::class.java)
+                getParcelableExtra(USER, User::class.java)
             } else {
-                getParcelableExtra(LoginActivity.USER)
+                getParcelableExtra(USER)
             }
         }
     }

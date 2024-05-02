@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.sopt.now.Login.LoginActivity.Companion.USER
 import com.sopt.now.User.User
+import com.sopt.now.data.Key.USER
 import com.sopt.now.databinding.FragmentMypageBinding
 
 class MypageFragment : Fragment() {

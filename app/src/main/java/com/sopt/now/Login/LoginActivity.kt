@@ -9,17 +9,14 @@ import com.sopt.now.Home.HomeActivity
 import com.sopt.now.R
 import com.sopt.now.Signup.SignupActivity
 import com.sopt.now.User.User
+import com.sopt.now.data.Key.PW
+import com.sopt.now.data.Key.USER
 import com.sopt.now.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private var pw: String? = null
     private var user: User? = null
-
-    companion object {
-        const val PW = "pw"
-        const val USER = "user"
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
