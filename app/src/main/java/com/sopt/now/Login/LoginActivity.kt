@@ -60,8 +60,7 @@ class LoginActivity : AppCompatActivity() {
                             startActivity(this)
                         }
                     } else {
-                        val error = response.message()
-                        Toast.makeText(this@LoginActivity, error, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@LoginActivity, R.string.login_fail, Toast.LENGTH_SHORT).show()
                     }
                 }
 
