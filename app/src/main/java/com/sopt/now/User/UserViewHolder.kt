@@ -8,7 +8,7 @@ class UserViewHolder(private val binding: ItemUserBinding): RecyclerView.ViewHol
         binding.run {
             ivUserProfileImg.setImageResource(userData.profileImage)
             tvUserNickname.text = userData.nickname
-            tvUserMbti.text = userData.mbti
+            tvUserPhone.text = userData.phone
         }
     }
 }
