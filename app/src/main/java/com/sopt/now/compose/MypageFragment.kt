@@ -16,14 +16,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun MypageFragment(id : String ?= "", pw : String ?= "", nickname : String ?= "", mbti : String ?= "") {
-    Column (
+fun MypageFragment(id: String? = "", pw: String? = "", nickname: String? = "", mbti: String? = "") {
+    Column(
         modifier = Modifier
             .padding(horizontal = 40.dp)
             .fillMaxWidth(),
@@ -46,14 +47,14 @@ fun MypageFragment(id : String ?= "", pw : String ?= "", nickname : String ?= ""
                 modifier = Modifier.padding(top = 30.dp)
             )
         }
-        Row (
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 40.dp),
             horizontalArrangement = Arrangement.Start
         ) {
             Text(
-                text = "ID : ",
+                text = stringResource(id = R.string.tv_mypage_id),
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Start
@@ -67,14 +68,14 @@ fun MypageFragment(id : String ?= "", pw : String ?= "", nickname : String ?= ""
                 )
             }
         }
-        Row (
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 15.dp),
             horizontalArrangement = Arrangement.Start
         ) {
             Text(
-                text = "MBTI : ",
+                text = stringResource(id = R.string.tv_mypage_mbti),
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Start

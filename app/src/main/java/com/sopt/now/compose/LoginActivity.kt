@@ -28,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -43,7 +44,7 @@ class LoginActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             NOWSOPTAndroidTheme {
-                Surface (
+                Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
@@ -60,7 +61,7 @@ class LoginActivity : ComponentActivity() {
 }
 
 @Composable
-fun Login(signupId : String?, signupPw : String?, nickname : String?, mbti : String?) {
+fun Login(signupId: String?, signupPw: String?, nickname: String?, mbti: String?) {
     val context = LocalContext.current
     var id by remember { mutableStateOf("") }
     var pw by remember { mutableStateOf("") }
@@ -68,21 +69,21 @@ fun Login(signupId : String?, signupPw : String?, nickname : String?, mbti : Str
     var shouldShowPassword by remember {
         mutableStateOf(false)
     }
-    val passwordResource : (Boolean) -> Int = {
-        if(it) {
+    val passwordResource: (Boolean) -> Int = {
+        if (it) {
             R.drawable.ic_baseline_visibility_white_24
         } else {
             R.drawable.ic_baseline_visibility_off_white_24
         }
     }
 
-    Column (
+    Column(
         modifier = Modifier
             .padding(horizontal = 70.dp)
             .fillMaxWidth()
     ) {
         Text(
-            text = "Welcome To SOPT",
+            text = stringResource(id = R.string.tv_login_title),
             fontSize = 30.sp,
             fontWeight = Bold,
             textAlign = TextAlign.Center,
@@ -91,7 +92,7 @@ fun Login(signupId : String?, signupPw : String?, nickname : String?, mbti : Str
                 .padding(top = 70.dp)
         )
         Text(
-            text = "ID",
+            text = stringResource(id = R.string.tv_login_id),
             fontSize = 20.sp,
             fontWeight = Bold,
             textAlign = TextAlign.Start,
@@ -107,10 +108,10 @@ fun Login(signupId : String?, signupPw : String?, nickname : String?, mbti : Str
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 10.dp),
-            label = {Text("아이디를 입력해주세요")}
+            label = { Text(stringResource(id = R.string.et_login_id_hint)) }
         )
         Text(
-            text = "비밀번호",
+            text = stringResource(id = R.string.tv_login_pw),
             fontSize = 20.sp,
             fontWeight = Bold,
             textAlign = TextAlign.Start,
@@ -128,14 +129,16 @@ fun Login(signupId : String?, signupPw : String?, nickname : String?, mbti : Str
                 .padding(top = 10.dp),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             visualTransformation = if (shouldShowPassword) VisualTransformation.None
-                                   else PasswordVisualTransformation(),
-            label = {Text("비밀번호를 입력해주세요")},
+            else PasswordVisualTransformation(),
+            label = { Text(stringResource(id = R.string.et_login_pw_hint)) },
             trailingIcon = {
                 IconButton(onClick = {
                     shouldShowPassword = !shouldShowPassword
                 }) {
-                    Icon(painter = painterResource(
-                        id = passwordResource(shouldShowPassword)),
+                    Icon(
+                        painter = painterResource(
+                            id = passwordResource(shouldShowPassword)
+                        ),
                         contentDescription = null
                     )
                 }
@@ -143,8 +146,8 @@ fun Login(signupId : String?, signupPw : String?, nickname : String?, mbti : Str
         )
         Button(
             onClick = {
-                if(id == signupId && pw == signupPw) {
-                    Toast.makeText(context, "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()
+                if (id == signupId && pw == signupPw) {
+                    Toast.makeText(context, R.string.login_success, Toast.LENGTH_SHORT).show()
                     Intent(context, HomeActivity::class.java).apply {
                         putExtra("id", id)
                         putExtra("pw", pw)
@@ -154,7 +157,7 @@ fun Login(signupId : String?, signupPw : String?, nickname : String?, mbti : Str
                     }
 
                 } else {
-                    Toast.makeText(context, "아이디와 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, R.string.login_fail, Toast.LENGTH_SHORT).show()
                 }
             },
             colors = ButtonDefaults.buttonColors(
@@ -164,7 +167,7 @@ fun Login(signupId : String?, signupPw : String?, nickname : String?, mbti : Str
                 .fillMaxWidth()
                 .padding(top = 20.dp)
         ) {
-            Text(text = "로그인")
+            Text(text = stringResource(id = R.string.btn_login))
         }
         Button(
             onClick = {
@@ -175,13 +178,13 @@ fun Login(signupId : String?, signupPw : String?, nickname : String?, mbti : Str
                 containerColor = Color.Transparent
             ),
             modifier = Modifier.align(Alignment.End)
-            ) {
-            Text(text = "회원가입하기", color = Color.Black)
+        ) {
+            Text(text = stringResource(id = R.string.btn_signup), color = Color.Black)
         }
     }
 }
 
-@Preview (showBackground = true)
+@Preview(showBackground = true)
 @Composable
 fun LoginPreview() {
     Login(null, null, null, null)

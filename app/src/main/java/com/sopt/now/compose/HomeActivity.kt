@@ -28,29 +28,29 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sopt.now.compose.ui.theme.NOWSOPTAndroidTheme
 
-class HomeActivity: ComponentActivity() {
+class HomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             NOWSOPTAndroidTheme {
-                Surface (
+                Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
-                ){
-
+                ) {
                     HomeScreen()
                 }
             }
         }
     }
 
-    data class BottomNavigationItem (
-        val Icon : ImageVector,
-        val label : String
+    data class BottomNavigationItem(
+        val Icon: ImageVector,
+        val label: String
     )
 
     @OptIn(ExperimentalMaterial3Api::class)
@@ -73,7 +73,7 @@ class HomeActivity: ComponentActivity() {
             )
         )
 
-        Scaffold (
+        Scaffold(
             topBar = {
                 TopAppBar(
                     colors = topAppBarColors(
@@ -81,34 +81,35 @@ class HomeActivity: ComponentActivity() {
                         titleContentColor = MaterialTheme.colorScheme.primary
                     ),
                     title = {
-                        Text("NOW SOPT ANDROID")
+                        Text(stringResource(id = R.string.app_name))
                     }
                 )
             },
             bottomBar = {
                 NavigationBar {
-                    items.forEachIndexed {index, item ->
+                    items.forEachIndexed { index, item ->
                         NavigationBarItem(
-                            icon = { Icon(item.Icon, contentDescription = item.label)},
-                            label = { Text(item.label)},
-                            selected = selectedItem == index ,
+                            icon = { Icon(item.Icon, contentDescription = item.label) },
+                            label = { Text(item.label) },
+                            selected = selectedItem == index,
                             onClick = { selectedItem = index }
                         )
                     }
                 }
             }
         ) { innerPadding ->
-            Column (
+            Column(
                 modifier = Modifier
                     .padding(innerPadding)
                     .padding(horizontal = 30.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                when(selectedItem) {
+                when (selectedItem) {
                     0 -> HomeFragment(
                         intent.getStringExtra("nickname"),
                         intent.getStringExtra("mbti")
                     )
+
                     1 -> SearchFragment()
                     2 -> MypageFragment(
                         intent.getStringExtra("id"),
@@ -120,7 +121,6 @@ class HomeActivity: ComponentActivity() {
             }
         }
     }
-
 
 
 }
