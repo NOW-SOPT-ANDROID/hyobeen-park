@@ -37,6 +37,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.sopt.now.compose.data.Key.ID
+import com.sopt.now.compose.data.Key.MBTI
+import com.sopt.now.compose.data.Key.NICKNAME
+import com.sopt.now.compose.data.Key.PW
 import com.sopt.now.compose.ui.theme.NOWSOPTAndroidTheme
 
 class LoginActivity : ComponentActivity() {
@@ -49,10 +53,10 @@ class LoginActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     Login(
-                        signupId = intent.getStringExtra("id"),
-                        signupPw = intent.getStringExtra("pw"),
-                        nickname = intent.getStringExtra("nickname"),
-                        mbti = intent.getStringExtra("mbti")
+                        signupId = intent.getStringExtra(ID),
+                        signupPw = intent.getStringExtra(PW),
+                        nickname = intent.getStringExtra(NICKNAME),
+                        mbti = intent.getStringExtra(MBTI)
                     )
                 }
             }
@@ -149,10 +153,10 @@ fun Login(signupId: String?, signupPw: String?, nickname: String?, mbti: String?
                 if (id == signupId && pw == signupPw) {
                     Toast.makeText(context, R.string.login_success, Toast.LENGTH_SHORT).show()
                     Intent(context, MainActivity::class.java).apply {
-                        putExtra("id", id)
-                        putExtra("pw", pw)
-                        putExtra("nickname", nickname)
-                        putExtra("mbti", mbti)
+                        putExtra(ID, id)
+                        putExtra(PW, pw)
+                        putExtra(NICKNAME, nickname)
+                        putExtra(MBTI, mbti)
                         context.startActivity(this)
                     }
 

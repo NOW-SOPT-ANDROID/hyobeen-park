@@ -31,6 +31,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.sopt.now.compose.data.Key.ID
+import com.sopt.now.compose.data.Key.MBTI
+import com.sopt.now.compose.data.Key.NICKNAME
+import com.sopt.now.compose.data.Key.PW
 import com.sopt.now.compose.ui.theme.NOWSOPTAndroidTheme
 
 class MainActivity : ComponentActivity() {
@@ -106,16 +110,16 @@ class MainActivity : ComponentActivity() {
             ) {
                 when (selectedItem) {
                     0 -> HomeScreen(
-                        intent.getStringExtra("nickname"),
-                        intent.getStringExtra("mbti")
+                        intent.getStringExtra(NICKNAME),
+                        intent.getStringExtra(MBTI)
                     )
 
                     1 -> SearchScreen()
                     2 -> MypageScreen(
-                        intent.getStringExtra("id"),
-                        intent.getStringExtra("pw"),
-                        intent.getStringExtra("nickname"),
-                        intent.getStringExtra("mbti")
+                        intent.getStringExtra(ID),
+                        intent.getStringExtra(PW),
+                        intent.getStringExtra(NICKNAME),
+                        intent.getStringExtra(MBTI)
                     )
                 }
             }
