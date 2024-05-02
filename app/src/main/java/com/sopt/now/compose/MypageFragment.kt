@@ -64,7 +64,7 @@ fun MypageFragment(id: String? = "", pw: String? = "", nickname: String? = "", m
                     text = it,
                     fontSize = 30.sp,
                     textAlign = TextAlign.Start,
-                    modifier = Modifier.padding(20.dp, 0.dp)
+                    modifier = Modifier.padding(start = 20.dp)
                 )
             }
         }
@@ -85,7 +85,7 @@ fun MypageFragment(id: String? = "", pw: String? = "", nickname: String? = "", m
                     text = it,
                     fontSize = 30.sp,
                     textAlign = TextAlign.Start,
-                    modifier = Modifier.padding(20.dp, 0.dp)
+                    modifier = Modifier.padding(start = 20.dp)
                 )
             }
         }
