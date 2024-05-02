@@ -44,7 +44,7 @@ class MypageFragment : Fragment() {
                 }
                 tvMypageNickname.setText(user?.nickname)
                 tvMypageIdContent.setText(user?.id)
-                tvMypageMbtiContent.setText(user?.mbti)
+                tvMypagePhoneContent.setText(user?.phone)
             }
         }
     }

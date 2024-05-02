@@ -17,12 +17,12 @@
     <string name="tv_signup_title">SIGN UP</string>
     <string name="tv_signup_nickname">닉네임</string>
     <string name="et_signup_nickname_hint">닉네임을 입력해주세요</string>
-    <string name="tv_signup_mbti">MBTI</string>
-    <string name="et_signup_mbti_hint">MBTI를 입력해주세요</string>
+    <string name="tv_signup_phone">전화번호</string>
+    <string name="et_signup_phone_hint">010–0000–0000</string>
 
     <!-- 마이 페이지 -->
     <string name="tv_mypage_id">ID : </string>
-    <string name="tv_mypage_mbti">MBTI : </string>
+    <string name="tv_mypage_phone">PHONE : </string>
 
     <!-- 홈 메뉴 -->
     <string name="menu_home">홈</string>

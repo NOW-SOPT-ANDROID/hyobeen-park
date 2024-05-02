@@ -9,5 +9,5 @@ data class User(
     @DrawableRes val profileImage :Int,
     val id : String,
     val nickname : String,
-    val mbti : String
+    val phone : String
 ): Parcelable

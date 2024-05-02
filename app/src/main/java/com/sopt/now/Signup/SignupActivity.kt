@@ -37,7 +37,7 @@ class SignupActivity : AppCompatActivity() {
                     R.drawable.ic_person_white_24,
                     etSignupId.text.toString(),
                     etSignupNickname.text.toString(),
-                    etSignupMbti.text.toString()
+                    etSignupPhone.text.toString()
                 )
                 checkInputValid(user, etSignupPw.text.toString())
             }
@@ -46,7 +46,7 @@ class SignupActivity : AppCompatActivity() {
 
     private fun checkInputValid(user: User, pw: String) {
         // 입력 조건 + 공백 문자만 있지 않은지 확인
-        val signupValidMsg = signupViewModel.checkSignupValidation(user.id, pw, user.nickname, user.mbti)
+        val signupValidMsg = signupViewModel.checkSignupValidation(user.id, pw, user.nickname, user.phone)
         showToastMessage(signupValidMsg)
         Log.d("check-id", user.id.length.toString())
         if(signupValidMsg == R.string.signup_success) successSignUp(user, pw)
