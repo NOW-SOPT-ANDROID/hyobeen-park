@@ -9,11 +9,19 @@ import com.sopt.now.Home.HomeActivity
 import com.sopt.now.R
 import com.sopt.now.Signup.SignupActivity
 import com.sopt.now.User.User
+import com.sopt.now.data.DTO.request.RequestLoginDto
+import com.sopt.now.data.DTO.request.RequestSignupDto
+import com.sopt.now.data.DTO.response.ResponseSignupDto
 import com.sopt.now.data.Key.PW
 import com.sopt.now.data.Key.USER
+import com.sopt.now.data.service.ServicePool
 import com.sopt.now.databinding.ActivityLoginBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
+    private val authService by lazy { ServicePool.authService }
     private lateinit var binding: ActivityLoginBinding
     private var pw: String? = null
     private var user: User? = null
@@ -23,24 +31,8 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        getSignUpResults()
-
+        initLoginBtnClickListener()
         initSignUpBtnClickListener()
-    }
-
-    private fun getSignUpResults() {
-        // 회원가입 정보 받아오기
-        val user = if (Build.VERSION.SDK_INT > Build.VERSION_CODES.TIRAMISU) {
-            intent.getParcelableExtra(USER, User::class.java)
-        } else {
-            intent.getParcelableExtra(USER)
-        }
-
-        if (user != null) {
-            this.user = user
-            pw = intent.getStringExtra(PW)
-            initLoginBtnClickListener()
-        }
     }
 
     private fun initSignUpBtnClickListener() {
@@ -52,17 +44,35 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initLoginBtnClickListener() {
         binding.btnLoginSignin.setOnClickListener {
-            if (binding.etLoginId.text.toString() == user?.id && binding.etLoginPw.text.toString() == pw) {
-                // 로그인 성공
-                Toast.makeText(this, R.string.login_success, Toast.LENGTH_SHORT).show()
-                Intent(this, HomeActivity::class.java).apply {
-                    putExtra(USER, user)
-                    startActivity(this)
+            val loginRequest = getLoginRequestDto(binding.etLoginId.text.toString(), binding.etLoginPw.text.toString())
+            authService.login(loginRequest).enqueue(object : Callback<ResponseSignupDto> {
+                override fun onResponse(
+                    call: Call<ResponseSignupDto>,
+                    response: Response<ResponseSignupDto>
+                ) {
+                    if(response.isSuccessful) {
+                        val data: ResponseSignupDto? = response.body()
+                        val userId = response.headers()["location"]
+                        Toast.makeText(this@LoginActivity, "$userId 님 로그인에 성공했습니다", Toast.LENGTH_SHORT).show()
+                        Intent(this@LoginActivity, HomeActivity::class.java).apply {
+                            putExtra("userId", userId)
+                            startActivity(this)
+                        }
+                    }
                 }
-            } else {
-                // 아이디 또는 비밀번호가 일치하지 않을 때
-                Toast.makeText(this, R.string.login_fail, Toast.LENGTH_SHORT).show()
-            }
+
+                override fun onFailure(call: Call<ResponseSignupDto>, t: Throwable) {
+                    Toast.makeText(this@LoginActivity, "서버 에러 발생", Toast.LENGTH_SHORT).show()
+                }
+            })
         }
+
+    }
+
+    private fun getLoginRequestDto(id: String, pw: String): RequestLoginDto {
+        return RequestLoginDto(
+            authenticationId = id,
+            password = pw,
+        )
     }
 }
