@@ -3,6 +3,7 @@ package com.sopt.now.Login
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.sopt.now.Home.HomeActivity
@@ -58,6 +59,9 @@ class LoginActivity : AppCompatActivity() {
                             putExtra("userId", userId)
                             startActivity(this)
                         }
+                    } else {
+                        val error = response.message()
+                        Toast.makeText(this@LoginActivity, error, Toast.LENGTH_SHORT).show()
                     }
                 }
 
