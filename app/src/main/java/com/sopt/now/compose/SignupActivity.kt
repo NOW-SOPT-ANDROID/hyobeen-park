@@ -164,7 +164,7 @@ fun Signup() {
             label = { Text(stringResource(id = R.string.et_signup_nickname_hint)) }
         )
         Text(
-            text = stringResource(id = R.string.tv_signup_mbti),
+            text = stringResource(id = R.string.tv_signup_phone),
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Start,
@@ -180,7 +180,7 @@ fun Signup() {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 10.dp),
-            label = { Text(stringResource(id = R.string.et_signup_mbti_hint)) }
+            label = { Text(stringResource(id = R.string.et_signup_phone_hint)) }
         )
         Button(
             onClick = {
@@ -197,7 +197,7 @@ fun Signup() {
                             .show()
 
                     mbti.isBlank() ->
-                        Toast.makeText(context, R.string.signup_mbti_fail, Toast.LENGTH_SHORT)
+                        Toast.makeText(context, R.string.signup_phone_fail, Toast.LENGTH_SHORT)
                             .show()
 
                     else -> {

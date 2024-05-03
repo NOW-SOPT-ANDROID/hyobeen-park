@@ -75,7 +75,7 @@ fun MypageScreen(id: String? = "", pw: String? = "", nickname: String? = "", mbt
             horizontalArrangement = Arrangement.Start
         ) {
             Text(
-                text = stringResource(id = R.string.tv_mypage_mbti),
+                text = stringResource(id = R.string.tv_mypage_phone),
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Start
