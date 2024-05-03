@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -35,6 +36,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.sopt.now.compose.data.Key.ID
+import com.sopt.now.compose.data.Key.MBTI
+import com.sopt.now.compose.data.Key.NICKNAME
+import com.sopt.now.compose.data.Key.PW
 import com.sopt.now.compose.ui.theme.NOWSOPTAndroidTheme
 
 class SignupActivity : ComponentActivity() {
@@ -42,7 +47,7 @@ class SignupActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             NOWSOPTAndroidTheme {
-                Surface (
+                Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
@@ -64,21 +69,21 @@ fun Signup() {
     var shouldShowPassword by remember {
         mutableStateOf(false)
     }
-    val passwordResource : (Boolean) -> Int = {
-        if(it) {
+    val passwordResource: (Boolean) -> Int = {
+        if (it) {
             R.drawable.ic_baseline_visibility_white_24
         } else {
             R.drawable.ic_baseline_visibility_off_white_24
         }
     }
 
-    Column (
+    Column(
         modifier = Modifier
             .padding(horizontal = 70.dp)
             .fillMaxWidth()
     ) {
         Text(
-            text = "SIGN UP",
+            text = stringResource(id = R.string.tv_signup_title),
             fontSize = 30.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center,
@@ -87,7 +92,7 @@ fun Signup() {
                 .padding(top = 70.dp)
         )
         Text(
-            text = "ID",
+            text = stringResource(id = R.string.tv_login_id),
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Start,
@@ -103,10 +108,10 @@ fun Signup() {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 10.dp),
-            label = { Text("아이디를 입력해주세요") }
+            label = { Text(stringResource(id = R.string.et_login_id_hint)) }
         )
         Text(
-            text = "비밀번호",
+            text = stringResource(id = R.string.tv_login_pw),
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Start,
@@ -124,21 +129,23 @@ fun Signup() {
                 .padding(top = 10.dp),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             visualTransformation = if (shouldShowPassword) VisualTransformation.None
-                                   else PasswordVisualTransformation(),
-            label = { Text("비밀번호를 입력해주세요")},
+            else PasswordVisualTransformation(),
+            label = { Text(stringResource(id = R.string.et_login_pw_hint)) },
             trailingIcon = {
                 IconButton(onClick = {
                     shouldShowPassword = !shouldShowPassword
                 }) {
-                    Icon(painter = painterResource(
-                        id = passwordResource(shouldShowPassword)),
+                    Icon(
+                        painter = painterResource(
+                            id = passwordResource(shouldShowPassword)
+                        ),
                         contentDescription = null
                     )
                 }
             }
         )
         Text(
-            text = "닉네임",
+            text = stringResource(id = R.string.tv_signup_nickname),
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Start,
@@ -154,10 +161,10 @@ fun Signup() {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 10.dp),
-            label = { Text("닉네임을 입력해주세요") }
+            label = { Text(stringResource(id = R.string.et_signup_nickname_hint)) }
         )
         Text(
-            text = "MBTI",
+            text = stringResource(id = R.string.tv_signup_mbti),
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Start,
@@ -173,26 +180,33 @@ fun Signup() {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 10.dp),
-            label = { Text( "MBTI를 입력해주세요") }
+            label = { Text(stringResource(id = R.string.et_signup_mbti_hint)) }
         )
         Button(
             onClick = {
                 when {
-                    id.isBlank() || id.length !in 6 .. 10 ->
-                        Toast.makeText(context, "아이디는 6글자 이상, 10글자 이하로 입력해주세요", Toast.LENGTH_SHORT).show()
-                    pw.isBlank() || pw.length !in 8 .. 12 ->
-                        Toast.makeText(context, "비밀번호는 8글자 이상, 12글자 이하로 입력해주세요", Toast.LENGTH_SHORT).show()
+                    id.isBlank() || id.length !in 6..10 ->
+                        Toast.makeText(context, R.string.signup_id_fail, Toast.LENGTH_SHORT).show()
+
+                    pw.isBlank() || pw.length !in 8..12 ->
+                        Toast.makeText(context, R.string.signup_password_fail, Toast.LENGTH_SHORT)
+                            .show()
+
                     nickname.isBlank() ->
-                        Toast.makeText(context, "닉네임을 입력해주세요", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, R.string.signup_nickname_fail, Toast.LENGTH_SHORT)
+                            .show()
+
                     mbti.isBlank() ->
-                        Toast.makeText(context, "mbti를 입력해주세요", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, R.string.signup_mbti_fail, Toast.LENGTH_SHORT)
+                            .show()
+
                     else -> {
-                        Toast.makeText(context, "회원가입에 성공했습니다.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, R.string.signup_success, Toast.LENGTH_SHORT).show()
                         Intent(context, LoginActivity::class.java).apply {
-                            putExtra("id", id)
-                            putExtra("pw", pw)
-                            putExtra("nickname", nickname)
-                            putExtra("mbti", mbti)
+                            putExtra(ID, id)
+                            putExtra(PW, pw)
+                            putExtra(NICKNAME, nickname)
+                            putExtra(MBTI, mbti)
                             context.startActivity(this)
                         }
                     }
@@ -205,7 +219,7 @@ fun Signup() {
                 .fillMaxWidth()
                 .padding(top = 20.dp)
         ) {
-            Text(text = "회원가입하기")
+            Text(text = stringResource(id = R.string.btn_signup))
         }
     }
 }
