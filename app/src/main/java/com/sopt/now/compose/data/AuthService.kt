@@ -1,5 +1,6 @@
 package com.sopt.now.compose.data
 
+import com.sopt.now.compose.data.DTO.request.RequestLoginDto
 import com.sopt.now.compose.data.DTO.request.RequestSignupDto
 import com.sopt.now.compose.data.DTO.response.ResponseSignupDto
 import retrofit2.Call
@@ -10,5 +11,10 @@ interface AuthService {
     @POST("member/join")
     fun signup(
         @Body request: RequestSignupDto,
+    ): Call<ResponseSignupDto>
+
+    @POST("member/login")
+    fun login(
+        @Body request: RequestLoginDto,
     ): Call<ResponseSignupDto>
 }
