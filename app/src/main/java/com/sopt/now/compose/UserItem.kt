@@ -27,7 +27,7 @@ fun UserItem(
     contentDescription: String,
     imageSize: Dp,
     nickname: String,
-    mbti: String,
+    phone: String,
     fontSize: TextUnit
 ) {
     Row (
@@ -61,7 +61,7 @@ fun UserItem(
         }
 
         Text(
-            text = mbti,
+            text = phone,
             fontSize = fontSize
         )
 
