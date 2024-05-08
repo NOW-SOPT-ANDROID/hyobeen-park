@@ -40,7 +40,9 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initLoginBtnClickListener() {
         binding.btnLoginSignin.setOnClickListener {
-            val loginRequest = getLoginRequestDto(binding.etLoginId.text.toString(), binding.etLoginPw.text.toString())
+            val loginRequest = RequestLoginDto(
+                authenticationId = binding.etLoginId.text.toString(),
+            )
             authService.login(loginRequest).enqueue(object : Callback<ResponseSignupDto> {
                 override fun onResponse(
                     call: Call<ResponseSignupDto>,
@@ -65,12 +67,5 @@ class LoginActivity : AppCompatActivity() {
             })
         }
 
-    }
-
-    private fun getLoginRequestDto(id: String, pw: String): RequestLoginDto {
-        return RequestLoginDto(
-            authenticationId = id,
-            password = pw,
-        )
     }
 }
