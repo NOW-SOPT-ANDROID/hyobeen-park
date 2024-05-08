@@ -10,7 +10,7 @@ class FriendViewHolder(private val binding: ItemFriendBinding): RecyclerView.Vie
             Glide.with(root.context)
                 .load(friendData.avatar)
                 .into(ivFriendProfileImg)
-            tvFriendNickname.text = friendData.first_name
+            tvFriendNickname.text = friendData.firstName
             tvFriendPhone.text = friendData.email
         }
     }

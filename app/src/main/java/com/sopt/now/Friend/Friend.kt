@@ -10,9 +10,9 @@ data class Friend(
     @SerialName("email")
     val email: String,
     @SerialName("first_name")
-    val first_name: String,
+    val firstName: String,
     @SerialName("last_name")
-    val last_name: String,
+    val lastName: String,
     @SerialName("avatar")
     val avatar: String,
 )
