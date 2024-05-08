@@ -1,4 +1,4 @@
-package com.sopt.now.Friend
+package com.sopt.now.presentation.Home.Friend
 
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide

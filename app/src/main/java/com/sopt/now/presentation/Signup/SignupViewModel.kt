@@ -1,4 +1,4 @@
-package com.sopt.now.Signup
+package com.sopt.now.presentation.Signup
 
 import androidx.lifecycle.ViewModel
 import com.sopt.now.R

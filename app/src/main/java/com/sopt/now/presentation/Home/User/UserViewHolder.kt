@@ -1,4 +1,4 @@
-package com.sopt.now.User
+package com.sopt.now.presentation.Home.User
 
 import androidx.recyclerview.widget.RecyclerView
 import com.sopt.now.databinding.ItemUserBinding

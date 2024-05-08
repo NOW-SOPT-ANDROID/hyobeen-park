@@ -1,8 +1,10 @@
-package com.sopt.now.data.service
+package com.sopt.now.data
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.sopt.now.BuildConfig.AUTH_BASE_URL
 import com.sopt.now.BuildConfig.USER_API_URL
+import com.sopt.now.data.service.AuthService
+import com.sopt.now.data.service.UserService
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit

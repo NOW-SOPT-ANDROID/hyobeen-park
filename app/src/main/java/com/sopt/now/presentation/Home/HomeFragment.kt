@@ -1,8 +1,6 @@
-package com.sopt.now.Home
+package com.sopt.now.presentation.Home
 
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,16 +8,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.sopt.now.Friend.Friend
-import com.sopt.now.Friend.FriendAdapter
+import com.sopt.now.presentation.Home.Friend.Friend
+import com.sopt.now.presentation.Home.Friend.FriendAdapter
 import com.sopt.now.R
-import com.sopt.now.User.User
-import com.sopt.now.User.UserAdapter
-import com.sopt.now.data.DTO.response.ResponseUserInfoDataDto
+import com.sopt.now.presentation.Home.User.User
+import com.sopt.now.presentation.Home.User.UserAdapter
 import com.sopt.now.data.DTO.response.ResponseUserInfoDto
 import com.sopt.now.data.DTO.response.ResponseUserListDto
-import com.sopt.now.data.Key.USER
-import com.sopt.now.data.service.ServicePool
+import com.sopt.now.data.ServicePool
 import com.sopt.now.databinding.FragmentHomeBinding
 import retrofit2.Call
 import retrofit2.Callback

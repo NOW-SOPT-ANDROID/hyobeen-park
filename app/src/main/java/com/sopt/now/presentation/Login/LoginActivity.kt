@@ -1,21 +1,16 @@
-package com.sopt.now.Login
+package com.sopt.now.presentation.Login
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.sopt.now.Home.HomeActivity
+import com.sopt.now.presentation.Home.HomeActivity
 import com.sopt.now.R
-import com.sopt.now.Signup.SignupActivity
-import com.sopt.now.User.User
+import com.sopt.now.presentation.Signup.SignupActivity
+import com.sopt.now.presentation.Home.User.User
 import com.sopt.now.data.DTO.request.RequestLoginDto
-import com.sopt.now.data.DTO.request.RequestSignupDto
 import com.sopt.now.data.DTO.response.ResponseSignupDto
-import com.sopt.now.data.Key.PW
-import com.sopt.now.data.Key.USER
-import com.sopt.now.data.service.ServicePool
+import com.sopt.now.data.ServicePool
 import com.sopt.now.databinding.ActivityLoginBinding
 import retrofit2.Call
 import retrofit2.Callback

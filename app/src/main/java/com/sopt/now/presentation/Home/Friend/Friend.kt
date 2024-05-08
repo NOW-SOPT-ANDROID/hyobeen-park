@@ -1,4 +1,4 @@
-package com.sopt.now.Friend
+package com.sopt.now.presentation.Home.Friend
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
