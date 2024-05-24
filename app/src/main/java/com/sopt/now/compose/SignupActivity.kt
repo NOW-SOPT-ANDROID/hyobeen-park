@@ -2,6 +2,7 @@ package com.sopt.now.compose
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -18,6 +19,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -36,13 +38,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.sopt.now.compose.data.Key.ID
-import com.sopt.now.compose.data.Key.MBTI
-import com.sopt.now.compose.data.Key.NICKNAME
-import com.sopt.now.compose.data.Key.PW
+import androidx.lifecycle.MutableLiveData
+import com.sopt.now.compose.data.DTO.request.RequestSignupDto
+import com.sopt.now.compose.data.DTO.response.ResponseSignupDto
+import com.sopt.now.compose.data.ServicePool
 import com.sopt.now.compose.ui.theme.NOWSOPTAndroidTheme
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SignupActivity : ComponentActivity() {
+    val signupViewModel = SignupViewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -51,20 +58,30 @@ class SignupActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Signup()
+                    Signup(signupViewModel)
                 }
             }
+        }
+
+        initLiveData()
+    }
+
+    private fun initLiveData() {
+        signupViewModel.liveData.observe(this) {
+            Toast.makeText(this@SignupActivity, it.message, Toast.LENGTH_SHORT).show()
         }
     }
 }
 
+
+
 @Composable
-fun Signup() {
+fun Signup(signupViewModel: SignupViewModel) {
     val context = LocalContext.current
     var id by remember { mutableStateOf("") }
     var pw by remember { mutableStateOf("") }
     var nickname by remember { mutableStateOf("") }
-    var mbti by remember { mutableStateOf("") }
+    var phone by remember { mutableStateOf("") }
 
     var shouldShowPassword by remember {
         mutableStateOf(false)
@@ -164,7 +181,7 @@ fun Signup() {
             label = { Text(stringResource(id = R.string.et_signup_nickname_hint)) }
         )
         Text(
-            text = stringResource(id = R.string.tv_signup_mbti),
+            text = stringResource(id = R.string.tv_signup_phone),
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Start,
@@ -173,43 +190,24 @@ fun Signup() {
                 .padding(top = 20.dp)
         )
         TextField(
-            value = mbti,
+            value = phone,
             onValueChange = {
-                mbti = it
+                phone = it
             },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 10.dp),
-            label = { Text(stringResource(id = R.string.et_signup_mbti_hint)) }
+            label = { Text(stringResource(id = R.string.et_signup_phone_hint)) }
         )
         Button(
             onClick = {
-                when {
-                    id.isBlank() || id.length !in 6..10 ->
-                        Toast.makeText(context, R.string.signup_id_fail, Toast.LENGTH_SHORT).show()
-
-                    pw.isBlank() || pw.length !in 8..12 ->
-                        Toast.makeText(context, R.string.signup_password_fail, Toast.LENGTH_SHORT)
-                            .show()
-
-                    nickname.isBlank() ->
-                        Toast.makeText(context, R.string.signup_nickname_fail, Toast.LENGTH_SHORT)
-                            .show()
-
-                    mbti.isBlank() ->
-                        Toast.makeText(context, R.string.signup_mbti_fail, Toast.LENGTH_SHORT)
-                            .show()
-
-                    else -> {
-                        Toast.makeText(context, R.string.signup_success, Toast.LENGTH_SHORT).show()
-                        Intent(context, LoginActivity::class.java).apply {
-                            putExtra(ID, id)
-                            putExtra(PW, pw)
-                            putExtra(NICKNAME, nickname)
-                            putExtra(MBTI, mbti)
-                            context.startActivity(this)
-                        }
-                    }
+                val validationMsg = signupViewModel.checkSignupValidation(id, pw, nickname, phone)
+                if (validationMsg == R.string.signup_success) {
+                    val requestSignupDto = RequestSignupDto(id, pw, nickname, phone)
+                    signupViewModel.postSignup(requestSignupDto)
+                    context.startActivity(Intent(context, LoginActivity::class.java))
+                } else {
+                    Toast.makeText(context, validationMsg, Toast.LENGTH_SHORT).show()
                 }
             },
             colors = ButtonDefaults.buttonColors(
@@ -222,10 +220,4 @@ fun Signup() {
             Text(text = stringResource(id = R.string.btn_signup))
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun SignupPreview() {
-    Signup()
 }

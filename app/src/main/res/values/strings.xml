@@ -16,12 +16,12 @@
     <string name="tv_signup_title">SIGN UP</string>
     <string name="tv_signup_nickname">닉네임</string>
     <string name="et_signup_nickname_hint">닉네임을 입력해주세요</string>
-    <string name="tv_signup_mbti">MBTI</string>
-    <string name="et_signup_mbti_hint">MBTI를 입력해주세요</string>
+    <string name="tv_signup_phone">전화번호</string>
+    <string name="et_signup_phone_hint">010-0000-0000</string>
 
     <!-- 마이 페이지 -->
     <string name="tv_mypage_id">ID : </string>
-    <string name="tv_mypage_mbti">MBTI : </string>
+    <string name="tv_mypage_phone">PHONE : </string>
 
     <!-- 홈 메뉴 -->
     <string name="menu_home">홈</string>
@@ -34,9 +34,13 @@
 
     <!-- 회원가입 메시지 -->
     <string name="signup_success">회원가입에 성공했습니다!</string>
+    <string name="signup_failed">회원가입에 실패했습니다</string>
     <string name="signup_id_fail">ID는 6자 이상, 10자 이하로 입력해주세요</string>
     <string name="signup_password_fail">비밀번호는 8자 이상, 12자 이하로 입력해주세요</string>
     <string name="signup_nickname_fail">닉네임을 입력해주세요</string>
-    <string name="signup_mbti_fail">MBTI를 입력해주세요</string>
+    <string name="signup_phone_fail">전화번호를 입력해주세요</string>
+
+    <!-- 서버 통신 -->
+    <string name="server_connection_failed">서버 통신 에러</string>
 
 </resources>

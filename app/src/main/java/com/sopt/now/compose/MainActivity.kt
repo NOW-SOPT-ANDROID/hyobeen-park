@@ -43,6 +43,7 @@ class MainActivity : ComponentActivity() {
     private lateinit var pw: String
     private lateinit var nickname: String
     private lateinit var mbti: String
+    private lateinit var userId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -116,9 +117,9 @@ class MainActivity : ComponentActivity() {
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 when (selectedItem) {
-                    0 -> HomeScreen(nickname, mbti)
+                    0 -> HomeScreen(userId)
                     1 -> SearchScreen()
-                    2 -> MypageScreen(id, pw, nickname, mbti)
+                    2 -> MypageScreen(userId)
                 }
             }
         }
@@ -128,10 +129,7 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun initUserData() {
         intent.apply {
-            id = getStringExtra(ID) ?: ""
-            pw = getStringExtra(PW) ?: ""
-            nickname = getStringExtra(NICKNAME) ?: ""
-            mbti = getStringExtra(MBTI) ?: ""
+            userId = getStringExtra("userId") ?: "0"
         }
     }
 
