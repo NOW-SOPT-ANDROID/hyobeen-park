@@ -1,4 +1,4 @@
-package com.sopt.now.Friend
+package com.sopt.now.presentation.Home.Friend
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

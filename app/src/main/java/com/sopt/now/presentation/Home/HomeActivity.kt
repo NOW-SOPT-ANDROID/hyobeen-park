@@ -1,11 +1,11 @@
-package com.sopt.now.Home
+package com.sopt.now.presentation.Home
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.sopt.now.Mypage.MypageFragment
+import com.sopt.now.presentation.Mypage.MypageFragment
 import com.sopt.now.R
-import com.sopt.now.Search.SearchFragment
+import com.sopt.now.presentation.Search.SearchFragment
 import com.sopt.now.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {

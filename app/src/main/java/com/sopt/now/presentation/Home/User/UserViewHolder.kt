@@ -1,4 +1,4 @@
-package com.sopt.now.User
+package com.sopt.now.presentation.Home.User
 
 import androidx.recyclerview.widget.RecyclerView
 import com.sopt.now.databinding.ItemUserBinding
@@ -8,7 +8,7 @@ class UserViewHolder(private val binding: ItemUserBinding): RecyclerView.ViewHol
         binding.run {
             ivUserProfileImg.setImageResource(userData.profileImage)
             tvUserNickname.text = userData.nickname
-            tvUserMbti.text = userData.mbti
+            tvUserPhone.text = userData.phone
         }
     }
 }
