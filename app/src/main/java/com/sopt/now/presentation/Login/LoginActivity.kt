@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.sopt.now.R
-import com.sopt.now.data.DTO.request.RequestLoginDto
-import com.sopt.now.data.DTO.response.ResponseSignupDto
+import com.sopt.now.data.model.request.RequestLoginDto
+import com.sopt.now.data.model.response.ResponseSignupDto
 import com.sopt.now.data.ServicePool
 import com.sopt.now.databinding.ActivityLoginBinding
 import com.sopt.now.presentation.Home.HomeActivity

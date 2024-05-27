@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.sopt.now.data.DTO.response.ResponseUserInfoDto
+import com.sopt.now.data.model.response.ResponseUserInfoDto
 import com.sopt.now.data.ServicePool
 import com.sopt.now.databinding.FragmentMypageBinding
 import retrofit2.Call

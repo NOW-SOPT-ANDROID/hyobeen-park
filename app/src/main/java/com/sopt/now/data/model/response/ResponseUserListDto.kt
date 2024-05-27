@@ -1,4 +1,4 @@
-package com.sopt.now.data.DTO.response
+package com.sopt.now.data.model.response
 
 import com.sopt.now.presentation.Home.Friend.Friend
 import kotlinx.serialization.SerialName

@@ -1,4 +1,4 @@
-package com.sopt.now.data
+package com.sopt.now.presentation
 
 object Key {
     const val PW = "pw"

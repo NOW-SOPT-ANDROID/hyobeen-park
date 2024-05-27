@@ -1,6 +1,6 @@
 package com.sopt.now.data.service
 
-import com.sopt.now.data.DTO.response.ResponseUserListDto
+import com.sopt.now.data.model.response.ResponseUserListDto
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -13,8 +13,8 @@ import com.sopt.now.presentation.Home.Friend.FriendAdapter
 import com.sopt.now.R
 import com.sopt.now.presentation.Home.User.User
 import com.sopt.now.presentation.Home.User.UserAdapter
-import com.sopt.now.data.DTO.response.ResponseUserInfoDto
-import com.sopt.now.data.DTO.response.ResponseUserListDto
+import com.sopt.now.data.model.response.ResponseUserInfoDto
+import com.sopt.now.data.model.response.ResponseUserListDto
 import com.sopt.now.data.ServicePool
 import com.sopt.now.databinding.FragmentHomeBinding
 import retrofit2.Call
