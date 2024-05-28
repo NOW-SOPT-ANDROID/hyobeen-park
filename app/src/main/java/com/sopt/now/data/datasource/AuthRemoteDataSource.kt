@@ -8,5 +8,5 @@ import com.sopt.now.util.NullableBaseResponse
 interface AuthRemoteDataSource {
     suspend fun signUp(requestSignupDto: RequestSignupDto): NullableBaseResponse<Unit>
 
-    suspend fun login(requestLoginDto: RequestLoginDto): NullableBaseResponse<Unit>
+    suspend fun login(requestLoginDto: RequestLoginDto): String?
 }

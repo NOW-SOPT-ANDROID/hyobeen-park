@@ -7,6 +7,7 @@ import com.sopt.now.data.model.response.ResponseUserInfoDto
 import com.sopt.now.util.BaseResponse
 import com.sopt.now.util.NullableBaseResponse
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -19,9 +20,9 @@ interface AuthService {
     ): NullableBaseResponse<Unit>
 
     @POST("member/login")
-    fun login(
+    suspend fun login(
         @Body request: RequestLoginDto,
-    ): NullableBaseResponse<Unit>
+    ): Response<NullableBaseResponse<Unit>>
 
     @GET("member/info")
     fun getUserInfo(

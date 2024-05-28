@@ -12,6 +12,10 @@ class AuthRemoteDataSourceImpl : AuthRemoteDataSource {
     override suspend fun signUp(requestSignupDto: RequestSignupDto): NullableBaseResponse<Unit> =
         authService.signUp(requestSignupDto)
 
-    override suspend fun login(requestLoginDto: RequestLoginDto): NullableBaseResponse<Unit> =
-        authService.login(requestLoginDto)
+    override suspend fun login(requestLoginDto: RequestLoginDto): String? =
+        authService.login(requestLoginDto).headers()[LOCATION]
+
+    companion object {
+        const val LOCATION = "location"
+    }
 }

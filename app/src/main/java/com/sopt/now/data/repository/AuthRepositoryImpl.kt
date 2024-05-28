@@ -1,8 +1,8 @@
 package com.sopt.now.data.repository
 
-import com.sopt.now.data.model.request.RequestSignupDto
 import com.sopt.now.data.datasource.AuthRemoteDataSource
 import com.sopt.now.data.model.request.RequestLoginDto
+import com.sopt.now.data.model.request.RequestSignupDto
 import com.sopt.now.domain.repository.AuthRepository
 
 class AuthRepositoryImpl(
@@ -13,8 +13,8 @@ class AuthRepositoryImpl(
             authRemoteDataSource.signUp(requestSignupDto = requestSignupDto)
         }
 
-    override suspend fun login(requestLoginDto: RequestLoginDto): Result<Unit> =
+    override suspend fun login(requestLoginDto: RequestLoginDto): Result<Int?> =
         runCatching {
-            authRemoteDataSource.login(requestLoginDto = requestLoginDto)
+            authRemoteDataSource.login(requestLoginDto = requestLoginDto)?.toInt()
         }
 }
