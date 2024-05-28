@@ -21,7 +21,7 @@ interface AuthService {
     @POST("member/login")
     fun login(
         @Body request: RequestLoginDto,
-    ): Call<ResponseSignupDto>
+    ): NullableBaseResponse<Unit>
 
     @GET("member/info")
     fun getUserInfo(
