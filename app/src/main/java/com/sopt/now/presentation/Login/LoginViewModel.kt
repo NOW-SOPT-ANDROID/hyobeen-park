@@ -19,8 +19,8 @@ class LoginViewModel(
         val loginDto = RequestLoginDto(authenticationId, password)
         viewModelScope.launch {
             _loginState.value = UiState.Loading
-            authRepository.login(loginDto).onSuccess { memberId ->
-                _loginState.value = UiState.Success(memberId)
+            authRepository.login(loginDto).onSuccess { userId ->
+                _loginState.value = UiState.Success(userId)
             }.onFailure { exception: Throwable ->
                 _loginState.value = UiState.Error(exception.message)
             }

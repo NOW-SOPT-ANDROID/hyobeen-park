@@ -7,20 +7,14 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import com.sopt.now.R
-import com.sopt.now.data.model.request.RequestLoginDto
-import com.sopt.now.data.model.response.ResponseSignupDto
-import com.sopt.now.data.ServicePool
 import com.sopt.now.databinding.ActivityLoginBinding
 import com.sopt.now.presentation.Home.HomeActivity
+import com.sopt.now.presentation.Key.USERID
 import com.sopt.now.presentation.Signup.SignupActivity
 import com.sopt.now.presentation.common.ViewModelFactory
 import com.sopt.now.util.UiState
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
     private val loginViewModel: LoginViewModel by viewModels { ViewModelFactory() }
@@ -53,11 +47,15 @@ class LoginActivity : AppCompatActivity() {
 
     private fun observeLogin() {
         loginViewModel.loginState.flowWithLifecycle(lifecycle).onEach { loginState ->
-            when(loginState) {
+            when (loginState) {
                 is UiState.Success -> {
                     showToastMessage("${loginState.data} 님 로그인에 성공했습니다")
-                    startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+                    Intent(this@LoginActivity, HomeActivity::class.java).apply {
+                        putExtra(USERID, loginState.data)
+                        startActivity(this)
+                    }
                 }
+
                 is UiState.Error -> showToastMessage(loginState.message)
                 else -> Unit
             }
