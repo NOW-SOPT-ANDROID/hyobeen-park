@@ -24,9 +24,9 @@ data class ResponseFriendsDto(
         val id: Int,
         @SerialName("email")
         val email: String,
-        @SerialName("firstName")
+        @SerialName("first_name")
         val firstName: String,
-        @SerialName("lastName")
+        @SerialName("last_name")
         val lastName: String,
         @SerialName("avatar")
         val avatar: String,

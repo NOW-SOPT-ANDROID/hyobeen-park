@@ -1,6 +1,5 @@
 package com.sopt.now.presentation.Home
 
-import android.icu.util.Freezable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,14 +11,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ConcatAdapter
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.sopt.now.presentation.Home.Friend.Friend
+import com.sopt.now.domain.model.Friend
 import com.sopt.now.presentation.Home.Friend.FriendAdapter
-import com.sopt.now.R
-import com.sopt.now.presentation.Home.User.User
 import com.sopt.now.presentation.Home.User.UserAdapter
-import com.sopt.now.data.model.response.ResponseUserInfoDto
-import com.sopt.now.data.model.response.ResponseUserListDto
 import com.sopt.now.data.ServicePool
 import com.sopt.now.databinding.FragmentHomeBinding
 import com.sopt.now.presentation.Key.USERID
@@ -27,18 +21,13 @@ import com.sopt.now.presentation.common.ViewModelFactory
 import com.sopt.now.util.UiState
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class HomeFragment : Fragment() {
-    private val userService by lazy { ServicePool.userService }
     private var _binding: FragmentHomeBinding? = null
     private val binding: FragmentHomeBinding
         get() = requireNotNull(_binding) { }
 
     private val homeViewModel: HomeViewModel by viewModels { ViewModelFactory() }
-    private var friendList: List<Friend> ?= null
 
     private lateinit var userAdapter: UserAdapter
     private lateinit var friendAdapter: FriendAdapter
@@ -56,10 +45,10 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         homeViewModel.getUserInfo(activity?.intent?.getStringExtra(USERID) ?: "0")
+        homeViewModel.getFriendsInfo(2)
         initAdapter()
         collectUserInfo()
-//        getUserList()
-
+        collectFriendsList()
     }
 
     override fun onDestroyView() {
@@ -81,6 +70,20 @@ class HomeFragment : Fragment() {
                     userAdapter.setUserList(homeUserState.data)
                 }
                 is UiState.Error -> showToastMessage(homeUserState.message)
+                else -> Unit
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun collectFriendsList() {
+        homeViewModel.homeFriendState.flowWithLifecycle(lifecycle).onEach { homeFriendState ->
+            when(homeFriendState) {
+                is UiState.Success -> {
+                    friendAdapter.setFriendList(homeFriendState.data)
+                }
+                is UiState.Error -> {
+                    showToastMessage(homeFriendState.message)
+                }
                 else -> Unit
             }
         }.launchIn(lifecycleScope)

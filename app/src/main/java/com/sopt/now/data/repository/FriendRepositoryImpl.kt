@@ -12,6 +12,6 @@ class FriendRepositoryImpl(
 ): FriendRepository {
     override suspend fun getFriendsList(page: Int): Result<FriendsList> =
         runCatching {
-            friendRemoteDataSource.getFriendsList(page = page).data.toFriendsListModel()
+            friendRemoteDataSource.getFriendsList(page = page).toFriendsListModel()
         }
 }

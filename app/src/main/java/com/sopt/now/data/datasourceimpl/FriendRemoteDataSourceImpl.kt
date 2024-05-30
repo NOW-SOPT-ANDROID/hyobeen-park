@@ -8,6 +8,6 @@ import com.sopt.now.util.BaseResponse
 class FriendRemoteDataSourceImpl : FriendRemoteDataSource {
     private val friendService = ServicePool.friendService
 
-    override suspend fun getFriendsList(page: Int): BaseResponse<ResponseFriendsDto> =
+    override suspend fun getFriendsList(page: Int): ResponseFriendsDto =
         friendService.getFriendsList(page = page)
 }

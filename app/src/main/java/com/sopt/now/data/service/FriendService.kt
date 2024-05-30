@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface FriendService {
     @GET("api/users")
-    fun getFriendsList(
+    suspend fun getFriendsList(
         @Query("page") page: Int,
-    ): BaseResponse<ResponseFriendsDto>
+    ): ResponseFriendsDto
 }
