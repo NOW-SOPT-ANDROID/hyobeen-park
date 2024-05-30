@@ -1,9 +1,7 @@
 package com.sopt.now.presentation.Home
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sopt.now.domain.model.Friend
 import com.sopt.now.domain.model.FriendsList
 import com.sopt.now.domain.model.User
 import com.sopt.now.domain.repository.AuthRepository
@@ -16,7 +14,7 @@ import kotlinx.coroutines.launch
 class HomeViewModel(
     private val authRepository: AuthRepository,
     private val friendRepository: FriendRepository,
-): ViewModel() {
+) : ViewModel() {
     private val _homeUserState = MutableStateFlow<UiState<User>>(UiState.Empty)
     val homeUserState get() = _homeUserState.asStateFlow()
 

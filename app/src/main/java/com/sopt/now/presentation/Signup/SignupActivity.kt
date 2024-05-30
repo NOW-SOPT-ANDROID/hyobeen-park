@@ -68,7 +68,10 @@ class SignupActivity : AppCompatActivity() {
                     startActivity(Intent(this@SignupActivity, LoginActivity::class.java))
                 }
 
-                is UiState.Error -> showToastMessage(R.string.server_connection_error)
+                is UiState.Error -> {
+                    showToastMessage(R.string.server_connection_error)
+                }
+
                 else -> Unit
             }
         }.launchIn(lifecycleScope)

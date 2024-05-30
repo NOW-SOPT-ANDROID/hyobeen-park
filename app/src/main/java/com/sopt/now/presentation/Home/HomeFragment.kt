@@ -1,7 +1,6 @@
 package com.sopt.now.presentation.Home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +10,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ConcatAdapter
-import com.sopt.now.domain.model.Friend
+import com.sopt.now.databinding.FragmentHomeBinding
 import com.sopt.now.presentation.Home.Friend.FriendAdapter
 import com.sopt.now.presentation.Home.User.UserAdapter
-import com.sopt.now.data.ServicePool
-import com.sopt.now.databinding.FragmentHomeBinding
 import com.sopt.now.presentation.Key.USERID
 import com.sopt.now.presentation.common.ViewModelFactory
 import com.sopt.now.util.UiState
@@ -65,11 +62,15 @@ class HomeFragment : Fragment() {
 
     private fun collectUserInfo() {
         homeViewModel.homeUserState.flowWithLifecycle(lifecycle).onEach { homeUserState ->
-            when(homeUserState) {
+            when (homeUserState) {
                 is UiState.Success -> {
                     userAdapter.setUserList(homeUserState.data)
                 }
-                is UiState.Error -> showToastMessage(homeUserState.message)
+
+                is UiState.Error -> {
+                    showToastMessage(homeUserState.message)
+                }
+
                 else -> Unit
             }
         }.launchIn(lifecycleScope)
@@ -77,13 +78,15 @@ class HomeFragment : Fragment() {
 
     private fun collectFriendsList() {
         homeViewModel.homeFriendState.flowWithLifecycle(lifecycle).onEach { homeFriendState ->
-            when(homeFriendState) {
+            when (homeFriendState) {
                 is UiState.Success -> {
                     friendAdapter.setFriendList(homeFriendState.data)
                 }
+
                 is UiState.Error -> {
                     showToastMessage(homeFriendState.message)
                 }
+
                 else -> Unit
             }
         }.launchIn(lifecycleScope)
