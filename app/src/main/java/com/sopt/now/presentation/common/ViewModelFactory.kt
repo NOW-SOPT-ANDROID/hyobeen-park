@@ -18,7 +18,7 @@ class ViewModelFactory: ViewModelProvider.Factory {
         } else if(modelClass.isAssignableFrom(LoginViewModel::class.java)) {
             return LoginViewModel(AuthRepositoryImpl(AuthRemoteDataSourceImpl())) as T
         } else if(modelClass.isAssignableFrom(HomeViewModel::class.java)) {
-            return HomeViewModel() as T
+            return HomeViewModel(AuthRepositoryImpl(AuthRemoteDataSourceImpl())) as T
         } else if(modelClass.isAssignableFrom(MypageViewModel::class.java)) {
             return MypageViewModel() as T
         }

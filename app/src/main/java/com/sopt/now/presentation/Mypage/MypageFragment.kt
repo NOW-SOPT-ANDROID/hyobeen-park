@@ -30,7 +30,7 @@ class MypageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getUserInfo(getUserId())
+//        getUserInfo(getUserId())
     }
 
     override fun onDestroyView() {
@@ -50,26 +50,26 @@ class MypageFragment : Fragment() {
         return activity?.intent?.getStringExtra("userId") ?: "0"
     }
 
-    private fun getUserInfo(userId: String) {
-        authService.getUserInfo(userId).enqueue(object : Callback<ResponseUserInfoDto> {
-            override fun onResponse(
-                call: Call<ResponseUserInfoDto>,
-                response: Response<ResponseUserInfoDto>
-            ) {
-                if (response.isSuccessful) {
-                    val data: ResponseUserInfoDto? = response.body()
-                    data?.data?.apply {
-                        initTextViews(authenticationId, nickname, phone)
-                    }
-                } else {
-                    val error = response.message()
-                    Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onFailure(call: Call<ResponseUserInfoDto>, t: Throwable) {
-                Toast.makeText(context, "서버 통신 에러", Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
+//    private fun getUserInfo(userId: String) {
+//        authService.getUserInfo(userId).enqueue(object : Callback<ResponseUserInfoDto> {
+//            override fun onResponse(
+//                call: Call<ResponseUserInfoDto>,
+//                response: Response<ResponseUserInfoDto>
+//            ) {
+//                if (response.isSuccessful) {
+//                    val data: ResponseUserInfoDto? = response.body()
+//                    data?.data?.apply {
+//                        initTextViews(authenticationId, nickname, phone)
+//                    }
+//                } else {
+//                    val error = response.message()
+//                    Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<ResponseUserInfoDto>, t: Throwable) {
+//                Toast.makeText(context, "서버 통신 에러", Toast.LENGTH_SHORT).show()
+//            }
+//        })
+//    }
 }

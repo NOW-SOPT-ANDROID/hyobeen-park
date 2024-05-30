@@ -2,6 +2,7 @@ package com.sopt.now.presentation.Login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -51,7 +52,7 @@ class LoginActivity : AppCompatActivity() {
                 is UiState.Success -> {
                     showToastMessage("${loginState.data} 님 로그인에 성공했습니다")
                     Intent(this@LoginActivity, HomeActivity::class.java).apply {
-                        putExtra(USERID, loginState.data)
+                        putExtra(USERID, loginState.data.toString())
                         startActivity(this)
                     }
                 }
