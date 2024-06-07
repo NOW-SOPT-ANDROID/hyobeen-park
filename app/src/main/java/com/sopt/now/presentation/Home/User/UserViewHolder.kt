@@ -2,8 +2,9 @@ package com.sopt.now.presentation.Home.User
 
 import androidx.recyclerview.widget.RecyclerView
 import com.sopt.now.databinding.ItemUserBinding
+import com.sopt.now.domain.model.User
 
-class UserViewHolder(private val binding: ItemUserBinding): RecyclerView.ViewHolder(binding.root){
+class UserViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
     fun onBind(userData: User) {
         binding.run {
             ivUserProfileImg.setImageResource(userData.profileImage)

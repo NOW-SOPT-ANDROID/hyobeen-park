@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sopt.now.databinding.ItemFriendBinding
+import com.sopt.now.domain.model.Friend
+import com.sopt.now.domain.model.FriendsList
 
 class FriendAdapter(): RecyclerView.Adapter<FriendViewHolder>() {
     private var friendList: List<Friend> = emptyList()
@@ -20,8 +22,8 @@ class FriendAdapter(): RecyclerView.Adapter<FriendViewHolder>() {
 
     override fun getItemCount() = friendList.size
 
-    fun setFriendList(friendList: List<Friend>) {
-        this.friendList = friendList.toList()
+    fun setFriendList(friendList: FriendsList) {
+        this.friendList = friendList.friendsList
         notifyDataSetChanged()
     }
 }

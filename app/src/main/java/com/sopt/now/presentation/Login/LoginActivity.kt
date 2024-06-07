@@ -3,20 +3,21 @@ package com.sopt.now.presentation.Login
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.sopt.now.R
-import com.sopt.now.data.DTO.request.RequestLoginDto
-import com.sopt.now.data.DTO.response.ResponseSignupDto
-import com.sopt.now.data.ServicePool
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.sopt.now.databinding.ActivityLoginBinding
 import com.sopt.now.presentation.Home.HomeActivity
+import com.sopt.now.presentation.Key.USERID
 import com.sopt.now.presentation.Signup.SignupActivity
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.sopt.now.presentation.common.ViewModelFactory
+import com.sopt.now.util.UiState
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 class LoginActivity : AppCompatActivity() {
-    private val authService by lazy { ServicePool.authService }
+    private val loginViewModel: LoginViewModel by viewModels { ViewModelFactory() }
     private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +27,7 @@ class LoginActivity : AppCompatActivity() {
 
         initSignUpBtnClickListener()
         initLoginBtnClickListener()
+        observeLogin()
     }
 
     private fun initSignUpBtnClickListener() {
@@ -36,42 +38,34 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun initLoginBtnClickListener() {
-        binding.btnLoginSignin.setOnClickListener {
-            val loginRequest = RequestLoginDto(
-                authenticationId = binding.etLoginId.text.toString(),
-                password = binding.etLoginPw.text.toString(),
-            )
-            authService.login(loginRequest).enqueue(object : Callback<ResponseSignupDto> {
-                override fun onResponse(
-                    call: Call<ResponseSignupDto>,
-                    response: Response<ResponseSignupDto>
-                ) {
-                    if (response.isSuccessful) {
-                        val userId = response.headers()["location"]
-                        Toast.makeText(
-                            this@LoginActivity,
-                            "$userId 님 로그인에 성공했습니다",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        Intent(this@LoginActivity, HomeActivity::class.java).apply {
-                            putExtra("userId", userId)
-                            startActivity(this)
-                        }
-                    } else {
-                        Toast.makeText(this@LoginActivity, R.string.login_fail, Toast.LENGTH_SHORT)
-                            .show()
+        with(binding) {
+            btnLoginSignin.setOnClickListener {
+                loginViewModel.postLogin(etLoginId.text.toString(), etLoginPw.text.toString())
+            }
+        }
+    }
+
+    private fun observeLogin() {
+        loginViewModel.loginState.flowWithLifecycle(lifecycle).onEach { loginState ->
+            when (loginState) {
+                is UiState.Success -> {
+                    showToastMessage("${loginState.data} 님 로그인에 성공했습니다")
+                    Intent(this@LoginActivity, HomeActivity::class.java).apply {
+                        putExtra(USERID, loginState.data.toString())
+                        startActivity(this)
                     }
                 }
 
-                override fun onFailure(call: Call<ResponseSignupDto>, t: Throwable) {
-                    Toast.makeText(
-                        this@LoginActivity,
-                        R.string.server_connection_error,
-                        Toast.LENGTH_SHORT
-                    ).show()
+                is UiState.Error -> {
+                    showToastMessage(loginState.message)
                 }
-            })
-        }
 
+                else -> Unit
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun showToastMessage(message: String?) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
