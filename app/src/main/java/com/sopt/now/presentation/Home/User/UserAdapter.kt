@@ -4,8 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sopt.now.databinding.ItemUserBinding
+import com.sopt.now.domain.model.User
 
-class UserAdapter(): RecyclerView.Adapter<UserViewHolder>() {
+class UserAdapter() : RecyclerView.Adapter<UserViewHolder>() {
     private var userList: List<User> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
@@ -21,7 +22,7 @@ class UserAdapter(): RecyclerView.Adapter<UserViewHolder>() {
     override fun getItemCount() = userList.size
 
     fun setUserList(user: User) {
-        this.userList = listOf (user)
+        this.userList = listOf(user)
         notifyDataSetChanged()
     }
 }
