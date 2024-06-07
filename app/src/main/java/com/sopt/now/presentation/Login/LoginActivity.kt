@@ -40,7 +40,13 @@ class LoginActivity : AppCompatActivity() {
     private fun initLoginBtnClickListener() {
         with(binding) {
             btnLoginSignin.setOnClickListener {
-                loginViewModel.postLogin(etLoginId.text.toString(), etLoginPw.text.toString())
+                if (etLoginId.text.isEmpty()) {
+                    showToastMessage("아이디를 입력해주세요")
+                } else if (etLoginPw.text.isEmpty()) {
+                    showToastMessage("비밀번호를 입력해주세요")
+                } else {
+                    loginViewModel.postLogin(etLoginId.text.toString(), etLoginPw.text.toString())
+                }
             }
         }
     }
