@@ -1,8 +1,7 @@
-package com.sopt.now.compose
+package com.sopt.now.compose.presentation.ui.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -19,18 +18,18 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -39,17 +38,23 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.MutableLiveData
-import com.sopt.now.compose.data.DTO.request.RequestSignupDto
+import com.sopt.now.compose.R
+import com.sopt.now.compose.data.DTO.request.RequestLoginDto
 import com.sopt.now.compose.data.DTO.response.ResponseSignupDto
+import com.sopt.now.compose.data.Key.ID
+import com.sopt.now.compose.data.Key.MBTI
+import com.sopt.now.compose.data.Key.NICKNAME
+import com.sopt.now.compose.data.Key.PW
 import com.sopt.now.compose.data.ServicePool
-import com.sopt.now.compose.ui.theme.NOWSOPTAndroidTheme
+import com.sopt.now.compose.presentation.ui.main.MainActivity
+import com.sopt.now.compose.presentation.ui.signup.SignupActivity
+import com.sopt.now.compose.presentation.ui.signup.SignupState
+import com.sopt.now.compose.theme.NOWSOPTAndroidTheme
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SignupActivity : ComponentActivity() {
-    val signupViewModel = SignupViewModel()
-
+class LoginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -58,30 +63,26 @@ class SignupActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Signup(signupViewModel)
+                    Login(
+                        signupId = intent.getStringExtra(ID),
+                        signupPw = intent.getStringExtra(PW),
+                        nickname = intent.getStringExtra(NICKNAME),
+                        mbti = intent.getStringExtra(MBTI)
+                    )
                 }
             }
-        }
-
-        initLiveData()
-    }
-
-    private fun initLiveData() {
-        signupViewModel.liveData.observe(this) {
-            Toast.makeText(this@SignupActivity, it.message, Toast.LENGTH_SHORT).show()
         }
     }
 }
 
-
-
 @Composable
-fun Signup(signupViewModel: SignupViewModel) {
+fun Login(signupId: String?, signupPw: String?, nickname: String?, mbti: String?) {
     val context = LocalContext.current
     var id by remember { mutableStateOf("") }
     var pw by remember { mutableStateOf("") }
-    var nickname by remember { mutableStateOf("") }
-    var phone by remember { mutableStateOf("") }
+
+    val authService by lazy { ServicePool.authService }
+    val liveData = MutableLiveData<SignupState>()
 
     var shouldShowPassword by remember {
         mutableStateOf(false)
@@ -100,9 +101,9 @@ fun Signup(signupViewModel: SignupViewModel) {
             .fillMaxWidth()
     ) {
         Text(
-            text = stringResource(id = R.string.tv_signup_title),
+            text = stringResource(id = R.string.tv_login_title),
             fontSize = 30.sp,
-            fontWeight = FontWeight.Bold,
+            fontWeight = Bold,
             textAlign = TextAlign.Center,
             modifier = Modifier
                 .fillMaxWidth()
@@ -111,11 +112,11 @@ fun Signup(signupViewModel: SignupViewModel) {
         Text(
             text = stringResource(id = R.string.tv_login_id),
             fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
+            fontWeight = Bold,
             textAlign = TextAlign.Start,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 50.dp)
+                .padding(top = 150.dp)
         )
         TextField(
             value = id,
@@ -130,7 +131,7 @@ fun Signup(signupViewModel: SignupViewModel) {
         Text(
             text = stringResource(id = R.string.tv_login_pw),
             fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
+            fontWeight = Bold,
             textAlign = TextAlign.Start,
             modifier = Modifier
                 .fillMaxWidth()
@@ -161,53 +162,46 @@ fun Signup(signupViewModel: SignupViewModel) {
                 }
             }
         )
-        Text(
-            text = stringResource(id = R.string.tv_signup_nickname),
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Start,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 20.dp)
-        )
-        TextField(
-            value = nickname,
-            onValueChange = {
-                nickname = it
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 10.dp),
-            label = { Text(stringResource(id = R.string.et_signup_nickname_hint)) }
-        )
-        Text(
-            text = stringResource(id = R.string.tv_signup_phone),
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Start,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 20.dp)
-        )
-        TextField(
-            value = phone,
-            onValueChange = {
-                phone = it
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 10.dp),
-            label = { Text(stringResource(id = R.string.et_signup_phone_hint)) }
-        )
         Button(
             onClick = {
-                val validationMsg = signupViewModel.checkSignupValidation(id, pw, nickname, phone)
-                if (validationMsg == R.string.signup_success) {
-                    val requestSignupDto = RequestSignupDto(id, pw, nickname, phone)
-                    signupViewModel.postSignup(requestSignupDto)
-                    context.startActivity(Intent(context, LoginActivity::class.java))
+                val requestLoginDto = RequestLoginDto(id, pw)
+                authService.login(requestLoginDto).enqueue(object : Callback<ResponseSignupDto> {
+                    override fun onResponse(
+                        call: Call<ResponseSignupDto>,
+                        response: Response<ResponseSignupDto>
+                    ) {
+                        if (response.isSuccessful) {
+                            val data: ResponseSignupDto? = response.body()
+                            val userId = response.headers()["location"]
+
+                            val intent = Intent(context, MainActivity::class.java)
+                            intent.putExtra("userId", userId)
+
+                            Toast.makeText(context, "$userId 님 로그인에 성공했습니다", Toast.LENGTH_SHORT).show()
+                            context.startActivity(intent)
+                        } else {
+                            liveData.value = SignupState(true, "아이디와 비밀번호가 일치하지 않습니다")
+                        }
+                    }
+
+                    override fun onFailure(call: Call<ResponseSignupDto>, t: Throwable) {
+                        liveData.value = SignupState(true, "서버 통신 에러")
+                    }
+                })
+
+
+                if (id == signupId && pw == signupPw) {
+                    Toast.makeText(context, R.string.login_success, Toast.LENGTH_SHORT).show()
+                    Intent(context, MainActivity::class.java).apply {
+                        putExtra(ID, id)
+                        putExtra(PW, pw)
+                        putExtra(NICKNAME, nickname)
+                        putExtra(MBTI, mbti)
+                        context.startActivity(this)
+                    }
+
                 } else {
-                    Toast.makeText(context, validationMsg, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, R.string.login_fail, Toast.LENGTH_SHORT).show()
                 }
             },
             colors = ButtonDefaults.buttonColors(
@@ -217,7 +211,25 @@ fun Signup(signupViewModel: SignupViewModel) {
                 .fillMaxWidth()
                 .padding(top = 20.dp)
         ) {
-            Text(text = stringResource(id = R.string.btn_signup))
+            Text(text = stringResource(id = R.string.btn_login))
+        }
+        Button(
+            onClick = {
+                val intent = Intent(context, SignupActivity::class.java)
+                context.startActivity(intent)
+            },
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.Transparent
+            ),
+            modifier = Modifier.align(Alignment.End)
+        ) {
+            Text(text = stringResource(id = R.string.btn_signup), color = Color.Black)
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun LoginPreview() {
+    Login(null, null, null, null)
 }

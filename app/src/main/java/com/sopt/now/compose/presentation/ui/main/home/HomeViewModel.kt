@@ -1,9 +1,5 @@
-package com.sopt.now.compose
+package com.sopt.now.compose.presentation.ui.main.home
 
-import android.util.Log
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sopt.now.compose.data.DTO.response.ResponseUserInfoDataDto
 import com.sopt.now.compose.data.DTO.response.ResponseUserInfoDto

@@ -1,4 +1,4 @@
-package com.sopt.now.compose
+package com.sopt.now.compose.presentation.ui.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -24,7 +24,6 @@ import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -32,11 +31,11 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.sopt.now.compose.data.Key.ID
-import com.sopt.now.compose.data.Key.MBTI
-import com.sopt.now.compose.data.Key.NICKNAME
-import com.sopt.now.compose.data.Key.PW
-import com.sopt.now.compose.ui.theme.NOWSOPTAndroidTheme
+import com.sopt.now.compose.presentation.ui.main.home.HomeScreen
+import com.sopt.now.compose.presentation.ui.main.mypage.MypageScreen
+import com.sopt.now.compose.R
+import com.sopt.now.compose.presentation.ui.main.search.SearchScreen
+import com.sopt.now.compose.theme.NOWSOPTAndroidTheme
 
 class MainActivity : ComponentActivity() {
     private lateinit var id: String

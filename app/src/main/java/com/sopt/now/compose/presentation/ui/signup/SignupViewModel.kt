@@ -1,8 +1,8 @@
-package com.sopt.now.compose
+package com.sopt.now.compose.presentation.ui.signup
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.sopt.now.compose.R
 import com.sopt.now.compose.data.DTO.request.RequestSignupDto
 import com.sopt.now.compose.data.DTO.response.ResponseSignupDto
 import com.sopt.now.compose.data.ServicePool
