@@ -19,6 +19,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,14 +36,18 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.sopt.now.compose.presentation.ui.login.LoginActivity
 import com.sopt.now.compose.R
-import com.sopt.now.compose.data.DTO.request.RequestSignupDto
+import com.sopt.now.compose.data.datasourceImpl.AuthRemoteDatasourceImpl
+import com.sopt.now.compose.data.model.request.RequestSignupDto
+import com.sopt.now.compose.data.repository.AuthRepositoryImpl
+import com.sopt.now.compose.domain.model.User
+import com.sopt.now.compose.presentation.ui.login.LoginActivity
 import com.sopt.now.compose.theme.NOWSOPTAndroidTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SignupActivity : ComponentActivity() {
-    val signupViewModel = SignupViewModel()
-
+    val signupViewModel = SignupViewModel(AuthRepositoryImpl(AuthRemoteDatasourceImpl()))
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -55,17 +60,8 @@ class SignupActivity : ComponentActivity() {
                 }
             }
         }
-
-        initLiveData()
-    }
-
-    private fun initLiveData() {
-        signupViewModel.liveData.observe(this) {
-            Toast.makeText(this@SignupActivity, it.message, Toast.LENGTH_SHORT).show()
-        }
     }
 }
-
 
 
 @Composable
@@ -196,8 +192,8 @@ fun Signup(signupViewModel: SignupViewModel) {
             onClick = {
                 val validationMsg = signupViewModel.checkSignupValidation(id, pw, nickname, phone)
                 if (validationMsg == R.string.signup_success) {
-                    val requestSignupDto = RequestSignupDto(id, pw, nickname, phone)
-                    signupViewModel.postSignup(requestSignupDto)
+                    val user = User(R.drawable.ic_baseline_visibility_white_24, id, nickname, phone)
+                    signupViewModel.postSignup(user, pw)
                     context.startActivity(Intent(context, LoginActivity::class.java))
                 } else {
                     Toast.makeText(context, validationMsg, Toast.LENGTH_SHORT).show()

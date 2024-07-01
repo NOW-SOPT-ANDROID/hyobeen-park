@@ -15,7 +15,7 @@ fun HomeScreen(userId: String) {
     val friendsList = homeViewModel.getFriendsData()
     val user = homeViewModel.user.collectAsState()
 
-    homeViewModel.getUserData(userId)
+//    homeViewModel.getUserData(userId)
 
     LazyColumn {
         item {

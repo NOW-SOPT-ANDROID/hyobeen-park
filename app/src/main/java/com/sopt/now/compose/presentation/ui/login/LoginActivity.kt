@@ -39,16 +39,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.MutableLiveData
 import com.sopt.now.compose.R
-import com.sopt.now.compose.data.DTO.request.RequestLoginDto
-import com.sopt.now.compose.data.DTO.response.ResponseSignupDto
-import com.sopt.now.compose.data.Key.ID
-import com.sopt.now.compose.data.Key.MBTI
-import com.sopt.now.compose.data.Key.NICKNAME
-import com.sopt.now.compose.data.Key.PW
+import com.sopt.now.compose.data.model.request.RequestLoginDto
+import com.sopt.now.compose.data.model.response.ResponseSignupDto
 import com.sopt.now.compose.data.ServicePool
 import com.sopt.now.compose.presentation.ui.main.MainActivity
 import com.sopt.now.compose.presentation.ui.signup.SignupActivity
-import com.sopt.now.compose.presentation.ui.signup.SignupState
 import com.sopt.now.compose.theme.NOWSOPTAndroidTheme
 import retrofit2.Call
 import retrofit2.Callback
@@ -63,26 +58,21 @@ class LoginActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Login(
-                        signupId = intent.getStringExtra(ID),
-                        signupPw = intent.getStringExtra(PW),
-                        nickname = intent.getStringExtra(NICKNAME),
-                        mbti = intent.getStringExtra(MBTI)
-                    )
+                    Login()
                 }
             }
         }
     }
 }
 
+@Preview
 @Composable
-fun Login(signupId: String?, signupPw: String?, nickname: String?, mbti: String?) {
+fun Login() {
     val context = LocalContext.current
     var id by remember { mutableStateOf("") }
     var pw by remember { mutableStateOf("") }
 
     val authService by lazy { ServicePool.authService }
-    val liveData = MutableLiveData<SignupState>()
 
     var shouldShowPassword by remember {
         mutableStateOf(false)
@@ -164,45 +154,30 @@ fun Login(signupId: String?, signupPw: String?, nickname: String?, mbti: String?
         )
         Button(
             onClick = {
-                val requestLoginDto = RequestLoginDto(id, pw)
-                authService.login(requestLoginDto).enqueue(object : Callback<ResponseSignupDto> {
-                    override fun onResponse(
-                        call: Call<ResponseSignupDto>,
-                        response: Response<ResponseSignupDto>
-                    ) {
-                        if (response.isSuccessful) {
-                            val data: ResponseSignupDto? = response.body()
-                            val userId = response.headers()["location"]
-
-                            val intent = Intent(context, MainActivity::class.java)
-                            intent.putExtra("userId", userId)
-
-                            Toast.makeText(context, "$userId 님 로그인에 성공했습니다", Toast.LENGTH_SHORT).show()
-                            context.startActivity(intent)
-                        } else {
-                            liveData.value = SignupState(true, "아이디와 비밀번호가 일치하지 않습니다")
-                        }
-                    }
-
-                    override fun onFailure(call: Call<ResponseSignupDto>, t: Throwable) {
-                        liveData.value = SignupState(true, "서버 통신 에러")
-                    }
-                })
-
-
-                if (id == signupId && pw == signupPw) {
-                    Toast.makeText(context, R.string.login_success, Toast.LENGTH_SHORT).show()
-                    Intent(context, MainActivity::class.java).apply {
-                        putExtra(ID, id)
-                        putExtra(PW, pw)
-                        putExtra(NICKNAME, nickname)
-                        putExtra(MBTI, mbti)
-                        context.startActivity(this)
-                    }
-
-                } else {
-                    Toast.makeText(context, R.string.login_fail, Toast.LENGTH_SHORT).show()
-                }
+//                val requestLoginDto = RequestLoginDto(id, pw)
+//                authService.login(requestLoginDto).enqueue(object : Callback<ResponseSignupDto> {
+//                    override fun onResponse(
+//                        call: Call<ResponseSignupDto>,
+//                        response: Response<ResponseSignupDto>
+//                    ) {
+//                        if (response.isSuccessful) {
+//                            val data: ResponseSignupDto? = response.body()
+//                            val userId = response.headers()["location"]
+//
+//                            val intent = Intent(context, MainActivity::class.java)
+//                            intent.putExtra("userId", userId)
+//
+//                            Toast.makeText(context, "$userId 님 로그인에 성공했습니다", Toast.LENGTH_SHORT).show()
+//                            context.startActivity(intent)
+//                        } else {
+//                            liveData.value = SignupState(true, "아이디와 비밀번호가 일치하지 않습니다")
+//                        }
+//                    }
+//
+//                    override fun onFailure(call: Call<ResponseSignupDto>, t: Throwable) {
+//                        liveData.value = SignupState(true, "서버 통신 에러")
+//                    }
+//                })
             },
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xFF209672)
@@ -226,10 +201,4 @@ fun Login(signupId: String?, signupPw: String?, nickname: String?, mbti: String?
             Text(text = stringResource(id = R.string.btn_signup), color = Color.Black)
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun LoginPreview() {
-    Login(null, null, null, null)
 }
