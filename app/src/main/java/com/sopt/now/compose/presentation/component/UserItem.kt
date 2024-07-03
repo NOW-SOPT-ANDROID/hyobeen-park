@@ -94,7 +94,7 @@ fun UserItem(
                     .width(imageSize)
                     .height(imageSize)
                     .background(
-                        color = Color(0xFF209672),
+                        color = Color(0x00FFFFFF),
                         shape = RoundedCornerShape(10.dp)
                     )
             )
