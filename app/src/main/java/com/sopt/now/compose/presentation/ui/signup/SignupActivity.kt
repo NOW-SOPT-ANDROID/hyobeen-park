@@ -45,7 +45,6 @@ import com.sopt.now.compose.presentation.ui.login.LoginActivity
 import com.sopt.now.compose.theme.NOWSOPTAndroidTheme
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class SignupActivity : ComponentActivity() {
     val signupViewModel = SignupViewModel(AuthRepositoryImpl(AuthRemoteDatasourceImpl()))
     override fun onCreate(savedInstanceState: Bundle?) {

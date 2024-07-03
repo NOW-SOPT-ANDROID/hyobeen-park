@@ -14,8 +14,7 @@ import kotlinx.coroutines.launch
 import java.util.regex.Pattern
 import javax.inject.Inject
 
-@HiltViewModel
-class SignupViewModel @Inject constructor(
+class SignupViewModel(
     private val authRepository: AuthRepository
 ) : ViewModel() {
     private var phone_pattern = "^01([0|1|6|7|8|9])-([0-9]{4})-([0-9]{4})$"

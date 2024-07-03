@@ -4,6 +4,7 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import com.sopt.now.compose.BuildConfig.AUTH_BASE_URL
 import com.sopt.now.compose.BuildConfig.USER_API_URL
 import com.sopt.now.compose.data.service.AuthService
+import com.sopt.now.compose.data.service.FriendService
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
@@ -20,5 +21,5 @@ object ApiFactory {
 
 object ServicePool {
     val authService = ApiFactory.create<AuthService, String>(AUTH_BASE_URL)
-    val userService = ApiFactory.create<AuthService, String>(USER_API_URL)
+    val friendService = ApiFactory.create<FriendService, String>(USER_API_URL)
 }

@@ -6,8 +6,8 @@ import com.sopt.now.compose.data.model.request.RequestSignupDto
 import com.sopt.now.compose.domain.model.User
 import com.sopt.now.compose.domain.repository.AuthRepository
 
-class AuthRepositoryImpl (
-    private val authRemoteDataSource: AuthRemoteDataSource,
+class AuthRepositoryImpl(
+    val authRemoteDataSource: AuthRemoteDataSource
 ) : AuthRepository {
     override suspend fun signUp(requestSignupDto: RequestSignupDto): Result<Unit> =
         runCatching {
