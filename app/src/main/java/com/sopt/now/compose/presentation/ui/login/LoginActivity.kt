@@ -2,7 +2,6 @@ package com.sopt.now.compose.presentation.ui.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
@@ -37,17 +36,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.MutableLiveData
 import com.sopt.now.compose.R
-import com.sopt.now.compose.data.model.request.RequestLoginDto
-import com.sopt.now.compose.data.model.response.ResponseSignupDto
 import com.sopt.now.compose.data.ServicePool
-import com.sopt.now.compose.presentation.ui.main.MainActivity
 import com.sopt.now.compose.presentation.ui.signup.SignupActivity
 import com.sopt.now.compose.theme.NOWSOPTAndroidTheme
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class LoginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

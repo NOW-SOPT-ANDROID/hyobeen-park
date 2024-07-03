@@ -19,6 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberImagePainter
 
 @Composable
 fun UserItem(
@@ -29,18 +30,65 @@ fun UserItem(
     phone: String,
     fontSize: TextUnit
 ) {
-    Row (
+    Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 10.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Row (
+        Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
                 painter = painterResource(id = painter),
+                contentDescription = contentDescription,
+                Modifier
+                    .width(imageSize)
+                    .height(imageSize)
+                    .background(
+                        color = Color(0xFF209672),
+                        shape = RoundedCornerShape(10.dp)
+                    )
+            )
+
+            Text(
+                text = nickname,
+                fontSize = fontSize,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(start = 20.dp)
+            )
+        }
+
+        Text(
+            text = phone,
+            fontSize = fontSize
+        )
+
+    }
+}
+
+@Composable
+fun UserItem(
+    painter: String,
+    contentDescription: String,
+    imageSize: Dp,
+    nickname: String,
+    phone: String,
+    fontSize: TextUnit
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 10.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                painter = rememberImagePainter(painter),
                 contentDescription = contentDescription,
                 Modifier
                     .width(imageSize)

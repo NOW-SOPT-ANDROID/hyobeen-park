@@ -1,4 +1,4 @@
-package com.sopt.now.compose.presentation.ui.main
+package com.sopt.now.compose.presentation.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -31,12 +31,14 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.sopt.now.compose.presentation.ui.main.home.HomeScreen
-import com.sopt.now.compose.presentation.ui.main.mypage.MypageScreen
 import com.sopt.now.compose.R
+import com.sopt.now.compose.presentation.ui.main.home.HomeGetData
+import com.sopt.now.compose.presentation.ui.main.mypage.MypageScreen
 import com.sopt.now.compose.presentation.ui.main.search.SearchScreen
 import com.sopt.now.compose.theme.NOWSOPTAndroidTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private lateinit var id: String
     private lateinit var pw: String
@@ -67,7 +69,7 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     @Preview(showBackground = true)
     @Composable
-    private fun MainScreen() {
+    fun MainScreen() {
         var selectedItem by remember { mutableIntStateOf(0) }
         val items = listOf(
             BottomNavigationItem(
@@ -116,7 +118,7 @@ class MainActivity : ComponentActivity() {
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 when (selectedItem) {
-                    0 -> HomeScreen(userId)
+                    0 -> HomeGetData()
                     1 -> SearchScreen()
                     2 -> MypageScreen(userId)
                 }
